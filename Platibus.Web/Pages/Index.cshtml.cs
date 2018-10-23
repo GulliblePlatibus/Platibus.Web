@@ -13,15 +13,6 @@ namespace Platibus.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly IUserDataService _userDataService;
-
-        public IndexModel(IUserDataService userDataService)
-        {
-            _userDataService = userDataService;
-
-            _userDataService.CreateUser(new User());
-        }
-
         public void OnGet()
         {
 
