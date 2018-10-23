@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Options;
-using Platibus.Web.ConfigHelpers;
-using Platibus.Web.DataServices;
-using Platibus.Web.DataServices.Models.User;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Platibus.Web.Pages
 {
