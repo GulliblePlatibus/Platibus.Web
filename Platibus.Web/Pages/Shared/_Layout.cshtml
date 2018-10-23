@@ -8,6 +8,7 @@
         <environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/lib/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" />
         </environment>
         <environment exclude="Development">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -41,7 +42,42 @@
             </div>
         </nav>
 
-        
+        <div id="wrapper" class="toggled">
+
+            <!-- you nav on left side -->
+            <div id="sidebar-wrapper">
+                <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
+                <ul class="sidebar-nav" style="margin-top:15px;">
+                    <li class="sidebar-brand">
+                        <a asp-page="/Index" class="navbar-brand">Home</a>
+                    </li>
+                    <li>
+                        <a asp-page="/Register" class="navbar-brand">Register</a>
+                    </li>
+                    <li>
+                        <a asp-page="/Login" class="navbar-brand">Login</a>
+                    </li>
+                    <li>
+                        <a asp-page="/Login" class="navbar-brand">Register</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- your main body here -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <footer></footer>
+            </div>
+        </div>
+
+
+
+
+
+
+
 
 
 
