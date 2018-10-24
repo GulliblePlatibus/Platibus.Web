@@ -24,8 +24,7 @@ namespace Platibus.Web.DataServices
         {
             HttpClient client;
 
-            var json = JsonConvert.SerializeObject(entity);
-            
+
             if (isAuth)
             {
                 client = GetAuthorizedHttpClient();
@@ -40,7 +39,7 @@ namespace Platibus.Web.DataServices
                 .Accept
                 .Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             
-            var httpContent = new StringContent(JsonConvert.SerializeObject(json, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
+            var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
 
             return await client.PostAsync(baseurl, httpContent);
         }
