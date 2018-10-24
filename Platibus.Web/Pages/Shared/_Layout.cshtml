@@ -32,19 +32,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a asp-page="/Index" class="navbar-brand"><i class="fas fa-home" style="font-size:30px"></i></a>
+                    <a asp-page="/Index" class="navbar-brand"><span title="Home"><i class="fas fa-home" style="font-size:30px"></i></span></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-page="/Login"><i class="far fa-address-card" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Login"><span title="Account Overview"><i class="far fa-address-card" style="font-size:30px"></i></span></a></li>
                         <li>
                             <a asp-page="/Register">
-                                <i class="fas fa-cog" style="font-size:30px"></i>
+                                <span title="Settings"><i class="fas fa-cog" style="font-size:30px"></i></span>
                             </a>
                         </li>
-                        <li><a asp-page="/About"><i class="far fa-clipboard" style="font-size:30px"></i></a></li>
-                        <li><a asp-page="/Contact"><i class="fas fa-question" style="font-size:30px"></i></a></li>
-                        <li><a asp-page="/Contact"><i class="fas fa-unlock-alt" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/About"><span title="Clip Board"><i class="far fa-clipboard" style="font-size:30px"></i></span></a></li>
+                        <li><a asp-page="/Contact"><span title="Help"><i class="fas fa-question" style="font-size:30px"></i></span></a></li>
+                        <li><a asp-page="/Contact"><span title="Login/Logout"><i class="fas fa-unlock-alt" style="font-size:30px"></i></span></a></li>
 
                     </ul>
                 </div>
@@ -57,17 +57,17 @@
             }
 
             #wrapper .sidebar-nav {
-                display: none;
+                display: inline;
             }
 
             #wrapper.toggled .sidebar-nav {
-                display: block;
+                display: inline;
             }
 
             a#menu-toggle {
                 display: inline-block;
                 width: 100%;
-                line-height: 100%;
+                line-height: 450%;
                 padding: 0;
                 margin: 0;
                 color: dodgerblue;
@@ -79,14 +79,31 @@
             <!-- you nav on left side -->
             <div id="sidebar-wrapper">
                 <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
-                <ul class="sidebar-nav" style="margin-top:15px;">
+                <ul class="sidebar-nav" style="margin-top:80px;">
                     <li>
                         <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
-                            <i class="fas fa-file-invoice-dollar" style="color:white"></i>
+                            <i class="fas fa-calendar-alt"></i> Booking Calendar
                         </a>
                     </li>
                     <li>
-                        <a asp-page="/User_Pages/Calendar" class="navbar-brand">Booking Calendar</a>
+                        <a asp-page="/User_Pages/Calendar" class="navbar-brand">
+                            <i class="fas fa-dollar-sign"></i> Budget Planning
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                            <i class="fas fa-chart-line"></i> Analytics
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                            <i class="fas fa-user-cog"></i> Administrative
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                            <i class="fas fa-calendar-check"></i> Calendar Overview
+                        </a>
                     </li>
                 </ul>
             </div>
