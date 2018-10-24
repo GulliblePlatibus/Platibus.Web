@@ -100,10 +100,10 @@ body {
 
 @media(min-width:768px) {
   #wrapper {
-    padding-left: 0;
+    padding-left: 3%;
   }
   #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 15%;
   }
   #sidebar-wrapper {
     width: 0;
