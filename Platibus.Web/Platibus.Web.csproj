@@ -13,4 +13,8 @@
     <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="1.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Pages\Shared\_Layout.cshtml.~LOCAL" />
+    <None Remove="Pages\Shared\_Layout.cshtml.~REMOTE" />
+  </ItemGroup>
 </Project>
