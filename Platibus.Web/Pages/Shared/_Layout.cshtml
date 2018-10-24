@@ -53,24 +53,32 @@
 
         <style>
             #wrapper #sidebar-wrapper {
+                display: block;
                 width: 50px;
+                align-content: center;
+                
             }
 
             #wrapper .sidebar-nav {
-                display: none;
+                display: block;
+                width: auto;
+                align-content: center;
             }
 
             #wrapper.toggled .sidebar-nav {
                 display: block;
+                width: auto;
+                align-content: center;
             }
 
             a#menu-toggle {
-                display: inline-block;
+                display: block;
                 width: 100%;
-                line-height: 100%;
+                line-height: 500%;
+                align-content:center;
                 padding: 0;
                 margin: 0;
-                color: dodgerblue;
+                color: white;
             }
         </style>
 
@@ -79,14 +87,20 @@
             <!-- you nav on left side -->
             <div id="sidebar-wrapper">
                 <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
-                <ul class="sidebar-nav" style="margin-top:15px;">
+                <ul class="sidebar-nav" style="margin-top:30px; align-items:center; width:auto; height:auto;margin-top:20%">
                     <li>
                         <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
                             <i class="fas fa-file-invoice-dollar" style="color:white"></i>
                         </a>
                     </li>
                     <li>
-                        <a asp-page="/User_Pages/Calendar" class="navbar-brand">Booking Calendar</a>
+                        <li><a asp-page="/About"><i class="far fa-clipboard" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-question" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-unlock-alt" style="font-size:30px"></i></a></li>
+
+
+
+
                     </li>
                 </ul>
             </div>
