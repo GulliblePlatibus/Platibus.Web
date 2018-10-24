@@ -9,6 +9,9 @@
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
             <link rel="stylesheet" href="~/lib/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" />
+            <link rel="stylesheet" href="~/css/TextSheet.css" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         </environment>
         <environment exclude="Development">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,6 +20,8 @@
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         </environment>
     </head>
+
+
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -27,20 +32,47 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a asp-page="/Index" class="navbar-brand">Home</a>
+                    <a asp-page="/Index" class="navbar-brand"><i class="fas fa-home" style="font-size:30px"></i></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-page="/Login">Login</a></li>
-                        <li><a asp-page="/Register">Register</a></li>
-                        <li><a asp-page="/About">About</a></li>
-                        <li><a asp-page="/Contact">Contact</a></li>
-
+                        <li><a asp-page="/Login"><i class="far fa-address-card" style="font-size:30px"></i></a></li>
+                        <li>
+                            <a asp-page="/Register">
+                                <i class="fas fa-cog" style="font-size:30px"></i>
+                            </a>
+                        </li>
+                        <li><a asp-page="/About"><i class="far fa-clipboard" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-question" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-unlock-alt" style="font-size:30px"></i></a></li>
 
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <style>
+            #wrapper #sidebar-wrapper {
+                width: 50px;
+            }
+
+            #wrapper .sidebar-nav {
+                display: none;
+            }
+
+            #wrapper.toggled .sidebar-nav {
+                display: block;
+            }
+
+            a#menu-toggle {
+                display: inline-block;
+                width: 100%;
+                line-height: 100%;
+                padding: 0;
+                margin: 0;
+                color: dodgerblue;
+            }
+        </style>
 
         <div id="wrapper" class="toggled">
 
@@ -48,17 +80,13 @@
             <div id="sidebar-wrapper">
                 <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
                 <ul class="sidebar-nav" style="margin-top:15px;">
-                    <li class="sidebar-brand">
-                        <a asp-page="/Index" class="navbar-brand">Home</a>
+                    <li>
+                        <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                            <i class="fas fa-file-invoice-dollar" style="color:white"></i>
+                        </a>
                     </li>
                     <li>
-                        <a asp-page="/Register" class="navbar-brand">Register</a>
-                    </li>
-                    <li>
-                        <a asp-page="/Login" class="navbar-brand">Login</a>
-                    </li>
-                    <li>
-                        <a asp-page="/Login" class="navbar-brand">Register</a>
+                        <a asp-page="/User_Pages/Calendar" class="navbar-brand">Booking Calendar</a>
                     </li>
                 </ul>
             </div>
@@ -67,8 +95,9 @@
             <div id="page-content-wrapper">
                 <div class="container-fluid">
                     @RenderBody()
+                    <hr />
                 </div>
-                <footer></footer>
+                <footer><p>&copy; 2018 - Platibus.Web</p></footer>
             </div>
         </div>
 
@@ -84,13 +113,7 @@
 
         <partial name="_CookieConsentPartial" />
 
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2018 - Platibus.Web</p>
-            </footer>
-        </div>
+
 
         <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -112,7 +135,16 @@
             </script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
+        <script>
+            $(document).ready(function () {
+        $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });
+            });
+        </script>
+        
 
         @RenderSection("Scripts", required: false)
     </body>
-</html>
+    </html>
