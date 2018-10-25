@@ -8,6 +8,41 @@ body {
   overflow-x: hidden;
 }
 
+.menu-symbols {
+    font-size: 33px;
+    float: left;
+    padding-left: 20px;
+    width:60px;
+}
+
+.row-full-parent {
+    width: 100%;
+}
+
+.my-icon {
+    vertical-align: middle;
+    font-size: 30px;
+}
+
+.my-text {
+    font-family: "Courier-new";
+}
+
+.my-fancy-container {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 60px;
+    padding: 10px;
+}
+
+.menu-text {
+    float: right;
+    font-size: 16px;
+    padding-top: 6px;
+}
+
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -103,24 +138,50 @@ body {
 }
 
 @media(min-width:768px) {
-  #wrapper {
-    padding-left: 3%;
-  }
-  #wrapper.toggled {
-    padding-left: 15%;
-  }
-  #sidebar-wrapper {
-    width: 0;
-  }
-  #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-  }
-  #page-content-wrapper {
-    padding: 20px;
-    position: relative;
-  }
-  #wrapper.toggled #page-content-wrapper {
-    position: relative;
-    margin-right: 0;
-  }
+    #wrapper {
+        padding-left: 3%;
+    }
+
+        #wrapper.toggled {
+            padding-left: 15%;
+        }
+
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+
+    #wrapper #sidebar-wrapper {
+        width: 50px;
+    }
+
+    #wrapper .sidebar-nav {
+        display: inline;
+    }
+
+    #wrapper.toggled .sidebar-nav {
+        display: inline;
+    }
+
+    a#menu-toggle {
+        display: inline-block;
+        width: 100%;
+        line-height: 450%;
+        padding: 0;
+        margin: 0;
+        color: dodgerblue;
+    }
 }

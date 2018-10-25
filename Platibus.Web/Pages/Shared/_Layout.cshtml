@@ -19,6 +19,13 @@
                   asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         </environment>
+
+        <style>
+            i {
+                font-size: 30px;
+            }
+           
+        </style>
     </head>
 
 
@@ -51,28 +58,6 @@
             </div>
         </nav>
 
-        <style>
-            #wrapper #sidebar-wrapper {
-                width: 50px;
-            }
-
-            #wrapper .sidebar-nav {
-                display: inline;
-            }
-
-            #wrapper.toggled .sidebar-nav {
-                display: inline;
-            }
-
-            a#menu-toggle {
-                display: inline-block;
-                width: 100%;
-                line-height: 450%;
-                padding: 0;
-                margin: 0;
-                color: dodgerblue;
-            }
-        </style>
 
         <div id="wrapper" class="toggled">
 
@@ -82,27 +67,42 @@
                 <ul class="sidebar-nav" style="margin-top:80px;">
                     <li>
                         <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
-                            <i class="fas fa-calendar-alt"></i> Booking Calendar
+                            <div class="row-full-parent">
+                                <div class="fas fa-calendar-alt menu-symbols"></div>
+                                <div class="menu-text"> &emsp; Booking Calendar </div>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a asp-page="/User_Pages/Calendar" class="navbar-brand">
-                            <i class="fas fa-dollar-sign"></i> Budget Planning
+                            <div class="row-full-parent">
+                                <div class="fas fa-dollar-sign menu-symbols"></div>
+                                <div class="menu-text">&emsp; Budget Planning</div>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
-                            <i class="fas fa-chart-line"></i> Analytics
+                            <div>
+                                <div class="fas fa-chart-line menu-symbols"></div>
+                                <div class="menu-text">&emsp; Analytics</div>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
-                            <i class="fas fa-user-cog"></i> Administrative
+                            <div>
+                                <div class="fas fa-user-cog menu-symbols"></div> 
+                                <div class="menu-text">&emsp; Administrative</div>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
-                            <i class="fas fa-calendar-check"></i> Calendar Overview
+                            <div class="row-full-parent">
+                                <div class="fas fa-calendar-check menu-symbols"></div>
+                                <div class="menu-text">&emsp; Calendar</div>
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -152,6 +152,8 @@
             </script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
+
+
         <script>
             $(document).ready(function () {
         $("#menu-toggle").click(function (e) {
