@@ -13,7 +13,6 @@ namespace Platibus.Web.DataServices
         Task<User> GetUserById(Guid id);
     }
     
-    
     public class UserDataService : BaseDataService, IUserDataService
     {
         public UserDataService(IOptions<BackendServerUrlConfiguration> config) : base(config)
@@ -22,7 +21,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<Response> CreateUser(User user)
         {
-            var baseurl = _serverUrl + "/"; //<-- Endpoint on backend!!!
+            var baseurl = _serverUrl + "/api/users"; //<-- Endpoint on backend!!!
 
             var response = await PostAsync<User>(baseurl, user);
 
