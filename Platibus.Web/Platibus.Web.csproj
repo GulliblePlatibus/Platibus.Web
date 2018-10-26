@@ -17,8 +17,4 @@
     <None Remove="Pages\Shared\_Layout.cshtml.~LOCAL" />
     <None Remove="Pages\Shared\_Layout.cshtml.~REMOTE" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Home\" />
-  </ItemGroup>
 </Project>
