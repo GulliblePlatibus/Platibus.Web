@@ -11,12 +11,22 @@ namespace Platibus.Web.Pages
 {
     public class RegisterModel : PageModel
     {
+
+        private readonly IUserDataService userDataService;
+
+        public RegisterModel(IUserDataService userDataService)
+        {
+            this.userDataService = userDataService;
+        }
+        
+
         private readonly IUserDataService _userDataService;
 
         public RegisterModel(IUserDataService userDataService)
         {
             _userDataService = userDataService;
         }
+
 
         /*Below is the OnPost method for the different elements
          * In these methods, the two-way binding is used
@@ -42,5 +52,6 @@ namespace Platibus.Web.Pages
                 Console.WriteLine(response.Message);
             }*/
         }
+        
     }
 }

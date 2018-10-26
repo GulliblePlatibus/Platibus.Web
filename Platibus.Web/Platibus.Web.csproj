@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="3.10.1" />
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -13,4 +14,8 @@
     <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="1.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Pages\Shared\_Layout.cshtml.~LOCAL" />
+    <None Remove="Pages\Shared\_Layout.cshtml.~REMOTE" />
+  </ItemGroup>
 </Project>
