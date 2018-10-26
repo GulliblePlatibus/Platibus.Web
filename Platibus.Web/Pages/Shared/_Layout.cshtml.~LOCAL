@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - Platibus.Web</title>
+
+        <environment include="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+            <link rel="stylesheet" href="~/lib/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" />
+            <link rel="stylesheet" href="~/css/TextSheet.css" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        </environment>
+        <environment exclude="Development">
+            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>
+    </head>
+
+
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-page="/Index" class="navbar-brand"><i class="fas fa-home" style="font-size:30px"></i></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-page="/Login"><i class="far fa-address-card" style="font-size:30px"></i></a></li>
+                        <li>
+                            <a asp-page="/Register">
+                                <i class="fas fa-cog" style="font-size:30px"></i>
+                            </a>
+                        </li>
+                        <li><a asp-page="/About"><i class="far fa-clipboard" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-question" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-unlock-alt" style="font-size:30px"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <style>
+            #wrapper #sidebar-wrapper {
+                display: block;
+                width: 50px;
+                align-content: center;
+                
+            }
+
+            #wrapper .sidebar-nav {
+                display: block;
+                width: auto;
+                align-content: center;
+            }
+
+            #wrapper.toggled .sidebar-nav {
+                display: block;
+                width: auto;
+                align-content: center;
+            }
+
+            a#menu-toggle {
+                display: block;
+                width: 100%;
+                line-height: 500%;
+                align-content:center;
+                padding: 0;
+                margin: 0;
+                color: white;
+            }
+        </style>
+
+        <div id="wrapper" class="toggled">
+
+            <!-- you nav on left side -->
+            <div id="sidebar-wrapper">
+                <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
+                <ul class="sidebar-nav" style="margin-top:30px; align-items:center; width:auto; height:auto;margin-top:20%">
+                    <li>
+                        <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                            <i class="fas fa-file-invoice-dollar" style="color:white"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <li><a asp-page="/About"><i class="far fa-clipboard" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-question" style="font-size:30px"></i></a></li>
+                        <li><a asp-page="/Contact"><i class="fas fa-unlock-alt" style="font-size:30px"></i></a></li>
+
+
+
+
+                    </li>
+                </ul>
+            </div>
+
+            <!-- your main body here -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    @RenderBody()
+                    <hr />
+                </div>
+                <footer><p>&copy; 2018 - Platibus.Web</p></footer>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <partial name="_CookieConsentPartial" />
+
+
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+        <script>
+            $(document).ready(function () {
+        $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });
+            });
+        </script>
+        
+
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>
