@@ -42,15 +42,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Login"><span title="Account Overview"><i class="far fa-address-card" style="font-size:30px"></i></span></a></li>
+                    <li><a asp-page="/Personal/Userinformation"><span title="Account Overview"><i class="far fa-address-card" style="font-size:30px"></i></span></a></li>
                     <li>
-                        <a asp-page="/Register">
+                        <a asp-page="/Settings/Settings_Index">
                             <span title="Settings"><i class="fas fa-cog" style="font-size:30px"></i></span>
                         </a>
                     </li>
-                    <li><a asp-page="/About"><span title="Clip Board"><i class="far fa-clipboard" style="font-size:30px"></i></span></a></li>
-                    <li><a asp-page="/Contact"><span title="Help"><i class="fas fa-question" style="font-size:30px"></i></span></a></li>
-                    <li><a asp-page="/Contact"><span title="Login/Logout"><i class="fas fa-unlock-alt" style="font-size:30px"></i></span></a></li>
+                    <li><a asp-page="/Clipboard/Clipboard_Index"><span title="Clip Board"><i class="far fa-clipboard" style="font-size:30px"></i></span></a></li>
+                    <li><a asp-page="/Help/Help_Index"><span title="Help"><i class="fas fa-question" style="font-size:30px"></i></span></a></li>
+                    <li><a asp-page="/LoginLogout/LoginLogout_Index"><span title="Login/Logout"><i class="fas fa-unlock-alt" style="font-size:30px"></i></span></a></li>
 
                 </ul>
             </div>
@@ -65,7 +65,7 @@
             <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
             <ul class="sidebar-nav" style="margin-top:80px;">
                 <li>
-                    <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                    <a asp-page="/Booking/Booking_index" class="navbar-brand">
                         <div class="row-full-parent">
                             <div class="fas fa-calendar-alt menu-symbols"></div>
                             <div class="menu-text"> &emsp; Booking Calendar </div>
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-page="/User_Pages/Calendar" class="navbar-brand">
+                    <a asp-page="/Calendar/Calendar_Index" class="navbar-brand">
                         <div class="row-full-parent">
                             <div class="fas fa-dollar-sign menu-symbols"></div>
                             <div class="menu-text">&emsp; Budget Planning</div>
@@ -81,7 +81,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                    <a asp-page="/Analytics/Analytics_Index" class="navbar-brand">
                         <div>
                             <div class="fas fa-chart-line menu-symbols"></div>
                             <div class="menu-text">&emsp; Analytics</div>
@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                    <a asp-page="/Administrative/Administrative_Index" class="navbar-brand">
                         <div>
                             <div class="fas fa-user-cog menu-symbols"></div>
                             <div class="menu-text">&emsp; Administrative</div>
@@ -97,7 +97,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-page="/User_Pages/UserInformation" class="navbar-brand">
+                    <a asp-page="/Calendar/Calendar_Index" class="navbar-brand">
                         <div class="row-full-parent">
                             <div class="fas fa-calendar-check menu-symbols"></div>
                             <div class="menu-text">&emsp; Calendar</div>

@@ -12,14 +12,7 @@ namespace Platibus.Web.Pages
     public class RegisterModel : PageModel
     {
 
-        private readonly IUserDataService userDataService;
-
-        public RegisterModel(IUserDataService userDataService)
-        {
-            this.userDataService = userDataService;
-        }
         
-
         private readonly IUserDataService _userDataService;
 
         public RegisterModel(IUserDataService userDataService)
