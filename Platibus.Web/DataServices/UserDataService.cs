@@ -1,9 +1,12 @@
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using IdentityModel.Client;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using Platibus.Web.ConfigHelpers;
 using Platibus.Web.DataServices.Models.User;
-using Platibus.Web.Documents;
+using Response = Platibus.Web.Documents.Response;
 
 namespace Platibus.Web.DataServices
 {
@@ -11,6 +14,7 @@ namespace Platibus.Web.DataServices
     {
         Task<Response> CreateUser(User user);
         Task<User> GetUserById(Guid id);
+        Task Login();
     }
     
     public class UserDataService : BaseDataService, IUserDataService
@@ -45,6 +49,46 @@ namespace Platibus.Web.DataServices
             var result = await GetAsync(baseurl);
 
             return await TryReadAsync<User>(result);
+        }
+
+        public async Task Login()
+        {
+            //
+            var disco = await DiscoveryClient.GetAsync("https://localhost:5001");
+
+            if (disco.IsError)
+            {
+                Console.WriteLine(disco.Error);
+                return;
+            }
+            
+            //Request token
+            var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
+            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("Ulsan", "1234", "Platibus.Backend");
+
+            if (tokenResponse.IsError)
+            {
+                Console.WriteLine(tokenResponse.Error);
+                return;
+            }
+
+            Console.WriteLine(tokenResponse.Json);
+
+            var client = new HttpClient();
+            
+            client.SetBearerToken(tokenResponse.AccessToken);
+
+            var response = await client.GetAsync("https://localhost:5010/api/users");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Sucks to be you" + ": " + response.StatusCode);   
+            }
+            else
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(JArray.Parse(content));
+            }
         }
     }
 }

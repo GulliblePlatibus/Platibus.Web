@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace Platibus.Web
             services.Configure<BackendServerUrlConfiguration>(
                 _configuration.GetSection(nameof(BackendServerUrlConfiguration)));
             
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -42,7 +44,24 @@ namespace Platibus.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            services.AddAuthentication(x =>
+                {
+                    x.DefaultScheme = "Cookies";
+                    x.DefaultChallengeScheme = "oidc";
+                })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", x =>
+                {
+                    x.SignInScheme = "Cookies";
+                    x.Authority = "http://localhost:5001";
+                    x.RequireHttpsMetadata = false;
+                    x.ClientId = "mvc";
+                    x.SaveTokens = true;
+                });
+            
             
             var container = new Container(new WebRegistry());
             container.Configure(config => config.Populate(services));
@@ -63,6 +82,8 @@ namespace Platibus.Web
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

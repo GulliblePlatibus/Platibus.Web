@@ -24,7 +24,9 @@ namespace Platibus.Web.Pages
          */ 
         public async void OnPost(string user_emailaddress)
         {
-            var response = await _userDataService.CreateUser(new User
+            await _userDataService.Login();
+
+            /*var response = await _userDataService.CreateUser(new User
             {
                 Email = user_emailaddress,
                 Name = "John Doe",
@@ -38,7 +40,7 @@ namespace Platibus.Web.Pages
             else
             {
                 Console.WriteLine(response.Message);
-            }
+            }*/
         }
     }
 }
