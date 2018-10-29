@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Platibus.Web.Pages.User_Pages
+namespace Platibus.Web.Pages.Settings
 {
-    public class CalendarModel : PageModel
+    public class Settings_IndexModel : PageModel
     {
         public void OnGet()
         {
