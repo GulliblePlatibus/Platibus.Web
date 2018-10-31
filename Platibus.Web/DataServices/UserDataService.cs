@@ -5,6 +5,7 @@ using Platibus.Web.ConfigHelpers;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Documents;
 using Platibus.Web.Acquaintance.IDataServices;
+using System.Collections.Generic;
 
 namespace Platibus.Web.DataServices
 {
@@ -41,6 +42,14 @@ namespace Platibus.Web.DataServices
             var result = await GetAsync(baseurl);
 
             return await TryReadAsync<User>(result);
+        }
+
+        public async Task<IEnumerable<IUser>> ListUsersAsync(int page, int pageSize)
+        {
+            var baseurl = _serverUrl + '/'; //+specific url
+            var result = await GetAsync(baseurl);
+
+            return await TryReadAsync<IEnumerable<IUser>>(result);
         }
     }
 }
