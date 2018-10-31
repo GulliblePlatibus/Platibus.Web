@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices;
 using Platibus.Web.DataServices.Models.User;
 

@@ -41,7 +41,18 @@ namespace Platibus.Web.DataServices
             
             var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
 
-            return await client.PostAsync(baseurl, httpContent);
+            HttpResponseMessage httpResponse = null;
+
+            try {
+                httpResponse = await client.PostAsync(baseurl, httpContent);
+            }
+            catch(Exception ex) // TODO : Implement socket exception
+            {
+
+            }
+
+            return httpResponse;
+            
         }
 
         protected async Task<HttpResponseMessage> PostAsync(string baseurl, bool isAuth = true)
