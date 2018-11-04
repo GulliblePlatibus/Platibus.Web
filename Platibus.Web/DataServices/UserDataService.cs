@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Platibus.Web.ConfigHelpers;
@@ -18,7 +19,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<Response> CreateUser(IUser user)
         {
-            var baseurl = _serverUrl + "/api/users"; //<-- Endpoint on backend!!!
+            var baseurl = _serverUrl + "/api/user"; //<-- Endpoint on backend!!!
 
             var response = await PostAsync<IUser>(baseurl, user);
 
@@ -44,12 +45,16 @@ namespace Platibus.Web.DataServices
             return await TryReadAsync<User>(result);
         }
 
-        public async Task<IEnumerable<IUser>> ListUsersAsync(int page, int pageSize)
+        public async Task<IEnumerable<User>> ListUsersAsync(int page, int pageSize)
         {
-            var baseurl = _serverUrl + '/'; //+specific url
+            var baseurl = _serverUrl + "/api/user/getUsers"; //+specific url
             var result = await GetAsync(baseurl);
 
-            return await TryReadAsync<IEnumerable<IUser>>(result);
+            var a = await TryReadAsync<IEnumerable<User>>(result);
+            
+            return a;
         }
+
+        
     }
 }
