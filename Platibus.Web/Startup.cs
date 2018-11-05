@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Platibus.Web.ConfigHelpers;
+using Platibus.Web.Helpers;
 using Platibus.Web.Registry;
 using StructureMap;
 
@@ -60,6 +63,13 @@ namespace Platibus.Web
                     x.RequireHttpsMetadata = false;
                     x.ClientId = "mvc";
                     x.SaveTokens = true;
+                    x.Events = new OpenIdConnectEvents
+                    {
+                        OnTokenValidated = async ctx =>
+                        {
+                            ctx.ResolveClaims();
+                        }
+                    };
                 });
             
             

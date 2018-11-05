@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.Operations;
+using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Pages.LoginLogout
 {
@@ -26,7 +28,8 @@ namespace Platibus.Web.Pages.LoginLogout
             {
                 Response.Cookies.Delete(cookie);
             }
-            
+
+            HttpContext.User = null;
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
         }
