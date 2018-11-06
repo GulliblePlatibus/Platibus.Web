@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices;
 using Platibus.Web.DataServices.Models.User;
 
@@ -11,15 +12,12 @@ namespace Platibus.Web.Pages
 {
     public class RegisterModel : PageModel
     {
-
-        
         private readonly IUserDataService _userDataService;
 
         public RegisterModel(IUserDataService userDataService)
         {
             _userDataService = userDataService;
         }
-
 
         /*Below is the OnPost method for the different elements
          * In these methods, the two-way binding is used
@@ -43,6 +41,5 @@ namespace Platibus.Web.Pages
                 Console.WriteLine(response.Message);
             }
         }
-        
     }
 }

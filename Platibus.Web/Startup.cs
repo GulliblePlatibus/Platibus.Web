@@ -10,8 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Platibus.Web.ConfigHelpers;
+using Platibus.Web.DataServices;
 using Platibus.Web.Registry;
 using StructureMap;
+using Platibus.Web.Pages;
+using Platibus.Web.DataServices.Models.User;
+using Platibus.Web.Acquaintance.IDataServices;
 
 namespace Platibus.Web
 {
@@ -42,8 +46,12 @@ namespace Platibus.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<IUser, User>();
+            services.AddTransient<IUserDataService, UserDataService>();
+
             var container = new Container(new WebRegistry());
             container.Configure(config => config.Populate(services));
             

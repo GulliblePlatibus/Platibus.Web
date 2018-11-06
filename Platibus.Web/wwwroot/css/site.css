@@ -5,7 +5,21 @@ body {
     padding-bottom: 20px;
 }
 
+.gi-2x {
+    font-size: 2em;
+}
 
+.gi-3x {
+    font-size: 3em;
+}
+
+.gi-4x {
+    font-size: 4em;
+}
+
+.gi-5x {
+    font-size: 5em;
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -20,6 +34,10 @@ body {
     line-height: 1.4;
 }
 
+.glyphicons-size-admin{
+    font-size: 75px;
+    width: 100%;
+}
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
