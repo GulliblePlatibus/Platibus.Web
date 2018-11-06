@@ -13,9 +13,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Platibus.Web.ConfigHelpers;
+using Platibus.Web.DataServices;
 using Platibus.Web.Helpers;
 using Platibus.Web.Registry;
 using StructureMap;
+using Platibus.Web.Pages;
+using Platibus.Web.DataServices.Models.User;
+using Platibus.Web.Acquaintance.IDataServices;
+using Platibus.Web.DataServices.Models.Shift;
 
 namespace Platibus.Web
 {
@@ -46,6 +51,14 @@ namespace Platibus.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<IUser, User>();
+            services.AddTransient<IShift, Shift>();
+            services.AddTransient<IUserDataService, UserDataService>();
+            services.AddTransient<IShiftDataService, ShiftDataService>();
 
             
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

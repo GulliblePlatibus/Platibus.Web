@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
@@ -6,16 +7,12 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using Platibus.Web.ConfigHelpers;
 using Platibus.Web.DataServices.Models.User;
-using Response = Platibus.Web.Documents.Response;
+using Platibus.Web.Documents;
+using Platibus.Web.Acquaintance.IDataServices;
+using System.Collections.Generic;
 
 namespace Platibus.Web.DataServices
 {
-    public interface IUserDataService
-    {
-        Task<Response> CreateUser(User user);
-        Task<User> GetUserById(Guid id);
-        Task Login();
-    }
     
     public class UserDataService : BaseDataService, IUserDataService
     {
@@ -23,11 +20,11 @@ namespace Platibus.Web.DataServices
         {
         }
 
-        public async Task<Response> CreateUser(User user)
+        public async Task<Response> CreateUser(IUser user)
         {
-            var baseurl = _serverUrl + "/api/users"; //<-- Endpoint on backend!!!
+            var baseurl = _serverUrl + "/api/user"; //<-- Endpoint on backend!!!
 
-            var response = await PostAsync<User>(baseurl, user);
+            var response = await PostAsync<IUser>(baseurl, user);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -51,44 +48,16 @@ namespace Platibus.Web.DataServices
             return await TryReadAsync<User>(result);
         }
 
-        public async Task Login()
+        public async Task<IEnumerable<User>> ListUsersAsync(int page, int pageSize)
         {
-            //
-            var disco = await DiscoveryClient.GetAsync("https://localhost:5001");
+            var baseurl = _serverUrl + "/api/user/getUsers"; //+specific url
+            var result = await GetAsync(baseurl);
 
-            if (disco.IsError)
-            {
-                Console.WriteLine(disco.Error);
-                return;
-            }
+            var a = await TryReadAsync<IEnumerable<User>>(result);
             
-            //Request token
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
-            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("Ulsan", "1234", "Platibus.Backend");
-
-            if (tokenResponse.IsError)
-            {
-                Console.WriteLine(tokenResponse.Error);
-                return;
-            }
-
-            Console.WriteLine(tokenResponse.Json);
-
-            var client = new HttpClient();
-            
-            client.SetBearerToken(tokenResponse.AccessToken);
-
-            var response = await client.GetAsync("https://localhost:5010/api/users");
-
-            if (!response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Sucks to be you" + ": " + response.StatusCode);   
-            }
-            else
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(JArray.Parse(content));
-            }
+            return a;
         }
+
+        
     }
 }

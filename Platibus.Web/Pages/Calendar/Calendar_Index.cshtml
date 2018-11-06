@@ -1,8 +1,83 @@
 ﻿@page
 @model Platibus.Web.Pages.Calendar.Calendar_IndexModel
+
 @{
     ViewData["Title"] = "Calendar_Index";
 }
 
 <h2>Calendar_Index</h2>
 
+<form method="post">
+    <input type="submit" class="btn btn-light" asp-page-handler="GetUsers" value="Get Users"> 
+</form>
+
+
+   
+    
+
+<table class="table table-bordered">
+    <thead>
+            
+            
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+            
+    <tbody>
+    @if (Model._Users.Count() > 0)
+    {
+        foreach (var user in Model._Users)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td><input type="submit" value="Delete User" asp-page-handler="DeleteUser"/></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+
+<form method="post">
+    <p>Select starttime for the shift</p>
+    <input type="datetime-local" name="ShiftStart"/>
+    <p>Select end time for the shift</p>
+    <input type="datetime-local" name="ShiftEnd"/> <br/>
+    <input type="submit" value="Create shift" asp-page-handler="CreateShift"/>
+</form>
+
+        
+<form method="post">
+<input type="submit" class="btn btn-light" asp-page-handler="GetShifts" value="Get All shifts"> 
+</form>
+    
+    
+<table class="table table-bordered">
+    <thead>
+            
+            
+    <tr>
+        <th>Start Time</th>
+        <th>End time</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+            
+    <tbody>
+    @if (Model.Shifts.Count() > 0)
+    {
+        foreach (var shift in Model.Shifts)
+        {
+            <tr>
+                <td>@shift.ShiftStart.ToString()</td>
+                <td>@shift.ShiftEnd.ToString()</td>
+                <td><a href="#">Delete Shift</a></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

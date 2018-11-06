@@ -1,3 +1,4 @@
+using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices;
 
 namespace Platibus.Web.Registry

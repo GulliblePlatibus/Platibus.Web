@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Net.Http;
@@ -19,7 +21,15 @@ namespace Platibus.Web.DataServices
             _config = config;
             _serverUrl = config.Value.BackendServerUrl;
         }
-        
+
+        public BaseDataService(IOptions<BackendServerUrlConfiguration> config, string serverUrl)
+        {
+            _config = config;
+            _serverUrl = serverUrl;
+        }
+
+       
+
         protected async Task<HttpResponseMessage> PostAsync<T>(string baseurl, T entity, bool isAuth = true)
         {
             HttpClient client;
@@ -41,7 +51,18 @@ namespace Platibus.Web.DataServices
             
             var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
 
-            return await client.PostAsync(baseurl, httpContent);
+            HttpResponseMessage httpResponse = null;
+
+            try {
+                httpResponse = await client.PostAsync(baseurl, httpContent);
+            }
+            catch(Exception ex) // TODO : Implement socket exception
+            {
+
+            }
+
+            return httpResponse;
+            
         }
 
         protected async Task<HttpResponseMessage> PostAsync(string baseurl, bool isAuth = true)
@@ -92,9 +113,24 @@ namespace Platibus.Web.DataServices
 
             var content = await response.Content.ReadAsStringAsync();
 
+            Console.WriteLine(content);
             return JsonConvert.DeserializeObject<T>(content);
         }
 
+        protected async Task<IEnumerable<T>> GetListAsync<T>(HttpResponseMessage responseMessage) where T : class
+        {
+            if (responseMessage.Content == null)
+            {
+                return null; // <-- Dont eat the error here!
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<IEnumerable<T>>(content);
+        }
+
+
+        
         private HttpClient GetAuthorizedHttpClient()
         {
             // Do some authorization stuff to the httpClient. This could be adding custom auth headers or maybe setting bearer token.
