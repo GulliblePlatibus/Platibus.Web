@@ -11,8 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Platibus.Web.ConfigHelpers;
 using Platibus.Web.DataServices;
-using Platibus.Web.Registry;
-using StructureMap;
 using Platibus.Web.Pages;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Acquaintance.IDataServices;
@@ -33,7 +31,7 @@ namespace Platibus.Web
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<BackendServerUrlConfiguration>(
                 _configuration.GetSection(nameof(BackendServerUrlConfiguration)));
@@ -51,11 +49,7 @@ namespace Platibus.Web
 
             services.AddTransient<IUser, User>();
             services.AddTransient<IUserDataService, UserDataService>();
-
-            var container = new Container(new WebRegistry());
-            container.Configure(config => config.Populate(services));
             
-            return container.GetInstance<IServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

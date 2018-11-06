@@ -41,14 +41,15 @@ namespace Platibus.Web.DataServices
             
             var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
 
-            HttpResponseMessage httpResponse = null;
+            HttpResponseMessage httpResponse = new HttpResponseMessage();
 
             try {
                 httpResponse = await client.PostAsync(baseurl, httpContent);
             }
             catch(Exception ex) // TODO : Implement socket exception
             {
-
+                httpResponse.StatusCode = System.Net.HttpStatusCode.InternalServerError; 
+                
             }
 
             return httpResponse;
