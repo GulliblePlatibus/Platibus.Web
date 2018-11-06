@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Platibus.Web.ConfigHelpers;
 using Platibus.Web.DataServices;
+using Platibus.Web.Helpers;
 using Platibus.Web.Registry;
 using StructureMap;
 using Platibus.Web.Pages;
@@ -39,6 +43,7 @@ namespace Platibus.Web
             services.Configure<BackendServerUrlConfiguration>(
                 _configuration.GetSection(nameof(BackendServerUrlConfiguration)));
             
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -55,6 +60,32 @@ namespace Platibus.Web
             services.AddTransient<IUserDataService, UserDataService>();
             services.AddTransient<IShiftDataService, ShiftDataService>();
 
+            
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            services.AddAuthentication(x =>
+                {
+                    x.DefaultScheme = "Cookies";
+                    x.DefaultChallengeScheme = "oidc";
+                })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", x =>
+                {
+                    x.SignInScheme = "Cookies";
+                    x.Authority = "https://localhost:5001/";
+                    x.RequireHttpsMetadata = false;
+                    x.ClientId = "mvc";
+                    x.SaveTokens = true;
+                    x.Events = new OpenIdConnectEvents
+                    {
+                        OnTokenValidated = async ctx =>
+                        {
+                            ctx.ResolveClaims();
+                        }
+                    };
+                });
+            
+            
             var container = new Container(new WebRegistry());
             container.Configure(config => config.Populate(services));
             
@@ -74,6 +105,8 @@ namespace Platibus.Web
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
