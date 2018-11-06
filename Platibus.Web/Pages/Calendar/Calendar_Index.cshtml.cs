@@ -15,15 +15,19 @@ namespace Platibus.Web.Pages.Calendar
     public class Calendar_IndexModel : PageModel
     {
         public IUserDataService UserDataService { get; set; }
- 
+        public IShift Shift { get; set; }
+        public IShiftDataService ShiftDataService { get; set; }
+
         [BindProperty]
         public IEnumerable<User> _Users { get; set; }
         public string test { get; set; } = "test";
 
 
-        public Calendar_IndexModel(IUserDataService userDataService)
+        public Calendar_IndexModel(IUserDataService userDataService , IShift shift , IShiftDataService shiftDataService)
         {
             UserDataService = userDataService;
+            Shift = shift;
+            ShiftDataService = shiftDataService;
             _Users = new List<User>();
 
         }
@@ -43,6 +47,15 @@ namespace Platibus.Web.Pages.Calendar
             {
                 Console.WriteLine(VARIABLE.Email);    
             }
+        }
+
+        public async Task<IActionResult> OnPostCreateShiftAsync(DateTime ShiftStart , DateTime ShiftEnd )
+        {
+            Shift.ShiftStart = ShiftStart;
+            Shift.ShiftEnd = ShiftEnd;
+            var response = await ShiftDataService.CreateShift(Shift);
+
+            return new ObjectResult(response);
         }
     }
 }

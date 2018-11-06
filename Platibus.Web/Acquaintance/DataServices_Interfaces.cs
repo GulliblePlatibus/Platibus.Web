@@ -29,9 +29,19 @@ namespace Platibus.Web.Acquaintance.IDataServices
         string Email { get; set; }
         string Password { get; set; }
     }
-    
-    
 
+    public interface IShift
+    {
+        
+         DateTime ShiftStart { get; set; }
+         DateTime ShiftEnd { get; set; }
+    }
+
+
+    public interface IShiftDataService
+    {
+        Task<Response> CreateShift(IShift shift);
+    }
 
 
 }

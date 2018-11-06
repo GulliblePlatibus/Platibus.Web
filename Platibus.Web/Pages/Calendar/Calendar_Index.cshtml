@@ -44,8 +44,10 @@
 
 <form method="post">
     <p>Select starttime for the shift</p>
-    <input type="datetime-local"/>
+    <input type="datetime-local" name="ShiftStart"/>
     <p>Select end time for the shift</p>
+    <input type="datetime-local" name="ShiftEnd"/> <br/>
+    <input type="submit" value="Create shift" asp-page-handler="CreateShift"/>
 </form>
 
         

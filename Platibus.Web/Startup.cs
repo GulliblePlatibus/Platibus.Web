@@ -16,6 +16,7 @@ using StructureMap;
 using Platibus.Web.Pages;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Acquaintance.IDataServices;
+using Platibus.Web.DataServices.Models.Shift;
 
 namespace Platibus.Web
 {
@@ -50,7 +51,9 @@ namespace Platibus.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IUser, User>();
+            services.AddTransient<IShift, Shift>();
             services.AddTransient<IUserDataService, UserDataService>();
+            services.AddTransient<IShiftDataService, ShiftDataService>();
 
             var container = new Container(new WebRegistry());
             container.Configure(config => config.Populate(services));
