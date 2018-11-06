@@ -15,31 +15,38 @@
    
     
 
-        <table class="table table-bordered">
-            <thead>
+<table class="table table-bordered">
+    <thead>
             
             
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+            
+    <tbody>
+    @if (Model._Users.Count() > 0)
+    {
+        foreach (var user in Model._Users)
+        {
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Delete</th>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td><a href="#">Delete User</a></td>
             </tr>
-            </thead>
-            
-            <tbody>
-            @if (Model._Users.Count() > 0)
-            {
-                foreach (var user in Model._Users)
-                {
-                    <tr>
-                        <td>@user.Name</td>
-                        <td>@user.Email</td>
-                        <td><a href="#">Delete User</a></td>
-                    </tr>
-                }
-            }
-            </tbody>
-        </table>
+        }
+    }
+    </tbody>
+</table>
+
+
+<form method="post">
+    <p>Select starttime for the shift</p>
+    <input type="datetime-local"/>
+    <p>Select end time for the shift</p>
+</form>
 
         
 
