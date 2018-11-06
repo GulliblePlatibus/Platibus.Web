@@ -17,7 +17,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<Response> CreateUser(IUser user)
         {
-            var baseurl = _serverUrl + "/api/users"; //<-- Endpoint on backend!!!
+            var baseurl = _serverUrl + "/api/user"; //<-- Endpoint on backend!!!
 
             var response = await PostAsync<IUser>(baseurl, user);
 
