@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Net.Http;
 using System.Threading.Tasks;
-using IdentityModel.Client;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using Platibus.Web.ConfigHelpers;
@@ -57,7 +56,5 @@ namespace Platibus.Web.DataServices
             
             return a;
         }
-
-        
     }
 }

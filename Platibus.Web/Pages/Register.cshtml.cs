@@ -25,7 +25,7 @@ namespace Platibus.Web.Pages
          */ 
         public async void OnPost(string user_emailaddress)
         {
-            await _userDataService.Login();
+            //await _userDataService.Login();
 
             /*var response = await _userDataService.CreateUser(new User
             {
