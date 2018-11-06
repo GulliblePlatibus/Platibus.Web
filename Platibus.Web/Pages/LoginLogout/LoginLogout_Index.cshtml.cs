@@ -19,7 +19,6 @@ namespace Platibus.Web.Pages.LoginLogout
         
         public void OnGet()
         {
-        
         }
 
         public async void OnPost()

@@ -12,11 +12,20 @@ namespace Platibus.Web.Helpers
     public static class WebExtensions
     {
         private const string TypeName = "name";
+
+        public static Guid SubjectId { get; private set; }
         
         public static TokenValidatedContext ResolveClaims(this TokenValidatedContext context)
         {
             //Get jwt token issued by identityProvider
             var jwt = context.SecurityToken;
+
+            var subjectId = jwt.Subject;
+            if (subjectId != null)
+            {
+                SubjectId = Guid.Parse(subjectId);
+            }
+            
             //Extract claims from jwt token
             var claims = new List<Claim>(jwt.Claims);
 
