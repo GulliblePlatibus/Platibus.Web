@@ -8,7 +8,7 @@
 <h2>Calendar_Index</h2>
 
 <form method="post">
-    <input type="submit" class="btn btn-light" value="Get Users"> 
+    <input type="submit" class="btn btn-light" asp-page-handler="GetUsers" value="Get Users"> 
 </form>
 
 
@@ -34,7 +34,7 @@
             <tr>
                 <td>@user.Name</td>
                 <td>@user.Email</td>
-                <td><a href="#">Delete User</a></td>
+                <td><input type="submit" value="Delete User" asp-page-handler="DeleteUser"/></td>
             </tr>
         }
     }
@@ -51,5 +51,33 @@
 </form>
 
         
-
+<form method="post">
+<input type="submit" class="btn btn-light" asp-page-handler="GetShifts" value="Get All shifts"> 
+</form>
     
+    
+<table class="table table-bordered">
+    <thead>
+            
+            
+    <tr>
+        <th>Start Time</th>
+        <th>End time</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+            
+    <tbody>
+    @if (Model.Shifts.Count() > 0)
+    {
+        foreach (var shift in Model.Shifts)
+        {
+            <tr>
+                <td>@shift.ShiftStart.ToString()</td>
+                <td>@shift.ShiftEnd.ToString()</td>
+                <td><a href="#">Delete Shift</a></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

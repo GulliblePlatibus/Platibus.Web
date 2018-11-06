@@ -21,6 +21,8 @@ namespace Platibus.Web.Pages.Calendar
         [BindProperty]
         public IEnumerable<User> _Users { get; set; }
         public string test { get; set; } = "test";
+        
+        public IEnumerable<IShift> Shifts { get; set; }
 
 
         public Calendar_IndexModel(IUserDataService userDataService , IShift shift , IShiftDataService shiftDataService)
@@ -29,6 +31,7 @@ namespace Platibus.Web.Pages.Calendar
             Shift = shift;
             ShiftDataService = shiftDataService;
             _Users = new List<User>();
+            Shifts = new List<IShift>();
 
         }
 
@@ -38,8 +41,9 @@ namespace Platibus.Web.Pages.Calendar
 
         }
 
-        public async Task OnPost()
+        public async Task OnPostGetUsersAsync()
         {
+            
             _Users = await UserDataService.ListUsersAsync(2, 2);
 
 
@@ -49,13 +53,22 @@ namespace Platibus.Web.Pages.Calendar
             }
         }
 
-        public async Task<IActionResult> OnPostCreateShiftAsync(DateTime ShiftStart , DateTime ShiftEnd )
+        public async Task OnPostCreateShiftAsync(DateTime ShiftStart , DateTime ShiftEnd )
         {
             Shift.ShiftStart = ShiftStart;
             Shift.ShiftEnd = ShiftEnd;
             var response = await ShiftDataService.CreateShift(Shift);
 
-            return new ObjectResult(response);
+            
         }
+
+        public async Task OnPostGetShiftsAsync()
+        {
+            Shifts = await ShiftDataService.ListUsersAsync();
+            
+            
+        }
+        
+        
     }
 }
