@@ -55,7 +55,6 @@ namespace Platibus.Web
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddTransient<IUser, User>();
             services.AddTransient<IShift, Shift>();
             services.AddTransient<IUserDataService, UserDataService>();
             services.AddTransient<IShiftDataService, ShiftDataService>();

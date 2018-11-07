@@ -3,39 +3,61 @@
 @{
     ViewData["Title"] = "Administrative_CreateUser";
 }
+<div class="container-login100">
+    <form class="container-corner validate-form" method="post">
+        <span class="login100-form-title">
+            Create User
+        </span>
+        
+        <span style="margin: 10px"></span>
+        
+        <div hidden="@Model.UserCreationSuccesfull" class="success" style="border-radius: 25px"> <span class="closebtn" onclick="this.parentElement.style.display='none';"> &times; </span>  @Model.UserCreationSuccesMSg </div>
+        <div hidden="@Model.UserCreationError" class="alert" style="border-radius: 25px"> <span class="closebtn" onclick="this.parentElement.style.display='none';"> &times; </span>  @Model.UserCreationErrorMsg </div>
+        
+        <span style="margin: 10px"></span>
 
-<h2>Create User</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
+        
+        <div class="wrap-input100 form-group validate-input" data-validate="Fullname is required">
+            <input class="input100 form-control validate-input" name="user_realName" placeholder="Full Name">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+        </div>
+        <span style="margin: 10px"></span>
+        <div class="wrap-input100 validate-input form-group" data-validate="Email is required">
+            <input class="input100 form-control" type="email" name="user_email" placeholder="Email">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+        </div>
+
+        <span style="margin: 10px"></span>
+
+        <div class="wrap-input100 validate-input form-group" data-validate="Password is required">
+            <input class="input100 form-control" type="password" name="user_password" placeholder="Password">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+        </div>
+
+        <span style="margin: 10px">
+            <span class="login100-form-titleH2">
+                Select Role
+            </span>
             <div class="form-group">
-                <p>Full name*:</p>
-                <input name="user_realName">
-                <br />
+                <input type="radio" name="authLvl" value="Employee"> Employee <br>
+                <input type="radio" name="authLvl" value="Manager"> Manager <br>
+                <input type="radio" name="authLvl" value="Administrative"> Administrative
             </div>
-            <div class="form-group">
-                <p>Email*: </p>
-                <input type="email" name="user_email">
-                <br />
-            </div>
-            <div class="form-group">
-                <p>Password*: </p>
-                <input type="password" name="user_password">
-                <br />
-            </div>
-            <div class="form-group">
-                <p>Role*(Select 1): </p>
-                <i class="normal-text"> Employee: <input type="checkbox" name="checkbox_employee" /></i>
-                <i class="normal-text"> Manager: <input type="checkbox" name="checkbox_manager" /></i>
-                <i class="normal-text"> Administrative: <input type="checkbox" name="checkbox_admMan" /></i>
-                <br />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create User" 
-                asp-page-handler="CreateUser" />
-            </div>
-        </form>
-    </div>
+        </span>
+        <div class="container-login100-form-btn form-group">
+            <button asp-page-handler="CreateUser" class="login100-form-btn" type="submit">
+                Login
+            </button>
+        </div>
+    </form>
 </div>
 
