@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,7 +19,7 @@ namespace Platibus.Web.Pages.Administrative
          * in the system.
          */
         private IUserDataService userDataService;
-        private IUser user;
+        private User user;
 
         public bool UserCreationSuccesfull { get; set; } = true;
         public string UserCreationSuccesMSg { get; set; }

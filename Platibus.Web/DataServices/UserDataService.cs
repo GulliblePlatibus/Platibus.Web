@@ -19,11 +19,11 @@ namespace Platibus.Web.DataServices
         {
         }
 
-        public async Task<Response> CreateUser(IUser user)
+        public async Task<Response> CreateUser(User user)
         {
-            var baseurl = _serverUrl + "/api/user"; //<-- Endpoint on backend!!!
+            var baseurl = _serverUrl + "/api/users"; //<-- Endpoint on backend!!!
 
-            var response = await PostAsync<IUser>(baseurl, user);
+            var response = await PostAsync<User>(baseurl, user);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -40,7 +40,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<User> GetUserById(Guid id)
         {
-            var baseurl = _serverUrl + "/"; //<-- specific url here!
+            var baseurl = _serverUrl + "/api/users/" + id; //<-- specific url here!
 
             var result = await GetAsync(baseurl);
 
@@ -49,7 +49,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<IEnumerable<User>> ListUsersAsync(int page, int pageSize)
         {
-            var baseurl = _serverUrl + "/api/user/getUsers"; //+specific url
+            var baseurl = _serverUrl + "/api/users/"; //+specific url
             var result = await GetAsync(baseurl);
 
             var a = await TryReadAsync<IEnumerable<User>>(result);

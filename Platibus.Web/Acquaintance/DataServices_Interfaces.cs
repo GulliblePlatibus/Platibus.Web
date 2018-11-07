@@ -11,7 +11,7 @@ namespace Platibus.Web.Acquaintance.IDataServices
 {
     public interface IUserDataService
     {
-        Task<Response> CreateUser(IUser user);
+        Task<Response> CreateUser(User user);
         Task<User> GetUserById(Guid id);
         /// <summary>
         /// Returns a single page from the list of users.
@@ -23,12 +23,6 @@ namespace Platibus.Web.Acquaintance.IDataServices
 
     }
 
-    public interface IUser
-    {
-        string Name { get; set; }
-        string Email { get; set; }
-        string Password { get; set; }
-    }
 
     public interface IShift
     {
