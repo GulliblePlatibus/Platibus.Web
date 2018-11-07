@@ -10,6 +10,22 @@
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/lib/startbootstrap-simple-sidebar-gh-pages/css/simple-sidebar.css" />
         <link rel="stylesheet" href="~/css/TextSheet.css" />
+        <!--===============================================================================================-->
+        <link rel="icon" type="image/png" href="~/LoginView/images/icons/favicon.ico" />
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/LoginView/vendor/bootstrap/css/bootstrap-grid.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/LoginView/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/LoginView/vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/LoginView/vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/LoginView/vendor/select2/select2.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="~/LoginView/css/util.css">
+        <link rel="stylesheet" type="text/css" href="~/LoginView/css/main.css">
+        <!--===============================================================================================-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     </environment>
@@ -29,140 +45,129 @@
 
 <!-- Navbar on top. A asp-page link to a different razor page to fill the body. They are styled with fancy fonts, plus added css from simple sidebar -->
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-page="/Index" class="navbar-brand"><span title="Home"><i class="fas fa-home" style="font-size:30px"></i></span></a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Personal/Userinformation"><span title="Account Overview"><i class="far fa-address-card" style="font-size:30px"></i></span></a></li>
-                    <li>
-                        <a asp-page="/Settings/Settings_Index">
-                            <span title="Settings"><i class="fas fa-cog" style="font-size:30px"></i></span>
-                        </a>
-                    </li>
-                    <li><a asp-page="/Clipboard/Clipboard_Index"><span title="Clip Board"><i class="far fa-clipboard" style="font-size:30px"></i></span></a></li>
-                    <li><a asp-page="/Help/Help_Index"><span title="Help"><i class="fas fa-question" style="font-size:30px"></i></span></a></li>
-                    <li><a asp-page="/LoginLogout/LoginLogout_Index"><span title="Login/Logout"><i class="fas fa-unlock-alt" style="font-size:30px"></i></span></a></li>
-
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-page="/Index" class="navbar-brand"><span title="Home"><i class="fas fa-home" style="font-size:30px"></i></span></a>
         </div>
-    </nav>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-page="/Personal/Userinformation"><span title="Account Overview"><i class="far fa-address-card" style="font-size:30px"></i></span></a></li>
+                <li>
+                    <a asp-page="/Settings/Settings_Index">
+                        <span title="Settings"><i class="fas fa-cog" style="font-size:30px"></i></span>
+                    </a>
+                </li>
+                <li><a asp-page="/Clipboard/Clipboard_Index"><span title="Clip Board"><i class="far fa-clipboard" style="font-size:30px"></i></span></a></li>
+                <li><a asp-page="/Help/Help_Index"><span title="Help"><i class="fas fa-question" style="font-size:30px"></i></span></a></li>
+                <li><a asp-page="/LoginLogout/LoginLogout_Index"><span title="Login/Logout"><i class="fas fa-unlock-alt" style="font-size:30px"></i></span></a></li>
 
-
-    <div id="wrapper" class="toggled">
-
-        <!-- you nav on left side. A asp-page link to a different razor page to fill the body. They are styled with fancy fonts, plus added css from simple sidebar -->
-        <div id="sidebar-wrapper">
-            <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
-            <ul class="sidebar-nav" style="margin-top:80px;">
-                <li>
-                    <a asp-page="/Booking/Booking_index" class="navbar-brand">
-                        <div class="row-full-parent">
-                            <div class="fas fa-calendar-alt menu-symbols"></div>
-                            <div class="menu-text"> &emsp; Booking Calendar </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a asp-page="/Calendar/Calendar_Index" class="navbar-brand">
-                        <div class="row-full-parent">
-                            <div class="fas fa-dollar-sign menu-symbols"></div>
-                            <div class="menu-text">&emsp; Budget Planning</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a asp-page="/Analytics/Analytics_Index" class="navbar-brand">
-                        <div>
-                            <div class="fas fa-chart-line menu-symbols"></div>
-                            <div class="menu-text">&emsp; Analytics</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a asp-page="/Administrative/Administrative_Index" class="navbar-brand">
-                        <div>
-                            <div class="fas fa-user-cog menu-symbols"></div>
-                            <div class="menu-text">&emsp; Administrative</div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a asp-page="/Calendar/Calendar_Index" class="navbar-brand">
-                        <div class="row-full-parent">
-                            <div class="fas fa-calendar-check menu-symbols"></div>
-                            <div class="menu-text">&emsp; Calendar</div>
-                        </div>
-                    </a>
-                </li>
             </ul>
         </div>
+    </div>
+</nav>
 
-        <!-- Renders they main body (with the razor pages that is directed to) + a global footer -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                @RenderBody()
-                <hr />
-            </div>
-            <footer><p>&copy; 2018 - Platibus.Web</p></footer>
-        </div>
+
+<div id="wrapper" class="toggled">
+
+    <!-- you nav on left side. A asp-page link to a different razor page to fill the body. They are styled with fancy fonts, plus added css from simple sidebar -->
+    <div id="sidebar-wrapper">
+        <a id="menu-toggle" href="#menu-toggle" class="btn btn-secondary">三</a>
+        <ul class="sidebar-nav" style="margin-top:80px;">
+            <li>
+                <a asp-page="/Booking/Booking_index" class="navbar-brand">
+                    <div class="row-full-parent">
+                        <div class="fas fa-calendar-alt menu-symbols"></div>
+                        <div class="menu-text"> &emsp; Booking Calendar </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Calendar/Calendar_Index" class="navbar-brand">
+                    <div class="row-full-parent">
+                        <div class="fas fa-dollar-sign menu-symbols"></div>
+                        <div class="menu-text">&emsp; Budget Planning</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Analytics/Analytics_Index" class="navbar-brand">
+                    <div>
+                        <div class="fas fa-chart-line menu-symbols"></div>
+                        <div class="menu-text">&emsp; Analytics</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Administrative/Administrative_Index" class="navbar-brand">
+                    <div>
+                        <div class="fas fa-user-cog menu-symbols"></div>
+                        <div class="menu-text">&emsp; Administrative</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Calendar/Calendar_Index" class="navbar-brand">
+                    <div class="row-full-parent">
+                        <div class="fas fa-calendar-check menu-symbols"></div>
+                        <div class="menu-text">&emsp; Calendar</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
     </div>
 
+    <!-- Renders they main body (with the razor pages that is directed to) + a global footer -->
+    <div id="page-content-wrapper">
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+</div>
 
 
 
+<partial name="_CookieConsentPartial" />
 
 
 
-
-
-
-
-    <partial name="_CookieConsentPartial" />
-
-
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    <!-- Functionality in the expand toggle. Changes the class defined in simple-sidebar.css-->
-    <script>
-        $(document).ready(function () {
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-        });
+<environment include="Development">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</environment>
+<environment exclude="Development">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"
+            crossorigin="anonymous"
+            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
     </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+            crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+    </script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+</environment>
 
-
-    @RenderSection("Scripts", required: false)
+<!-- Functionality in the expand toggle. Changes the class defined in simple-sidebar.css-->
+<script>
+    $(document).ready(function () {
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    });
+</script>
+@RenderSection("Scripts", required: false)
 </body>
+
 </html>
