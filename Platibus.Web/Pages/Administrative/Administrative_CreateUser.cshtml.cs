@@ -18,8 +18,7 @@ namespace Platibus.Web.Pages.Administrative
          * The IUserDataService contacts the backend server which creates the specified user
          * in the system.
          */
-        private IUserDataService userDataService;
-        private User user;
+        private IUserDataService _userDataService;
 
         public bool UserCreationSuccesfull { get; set; } = true;
         public string UserCreationSuccesMSg { get; set; }
@@ -27,9 +26,9 @@ namespace Platibus.Web.Pages.Administrative
         public bool UserCreationError { get; set; } = true;
         public string UserCreationErrorMsg { get; set; }
         
-        public Administrative_CreateUserModel(IUserDataService _userDataService)
+        public Administrative_CreateUserModel(IUserDataService userDataService)
         {
-            this.userDataService = _userDataService;
+            _userDataService = userDataService;
         }
 
         /*Note: The name contains 'createUser' because the input type=
@@ -67,7 +66,7 @@ namespace Platibus.Web.Pages.Administrative
                 return;
             }
             
-            var response = await userDataService.CreateUser(new User
+            var response = await _userDataService.CreateUser(new User
             {
                 Email = user_email,
                 Name = user_realName,
