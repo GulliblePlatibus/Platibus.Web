@@ -4,7 +4,7 @@ using Platibus.Web.Acquaintance.IDataServices;
 namespace Platibus.Web.DataServices.Models.User
 {
 
-    public class User : IUser
+    public class User
     {
         [JsonProperty("name")]
         public string Name { get; set; }

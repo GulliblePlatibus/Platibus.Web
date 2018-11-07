@@ -54,8 +54,7 @@ namespace Platibus.Web
 
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddTransient<IUser, User>();
+            
             services.AddTransient<IShift, Shift>();
             services.AddTransient<IUserDataService, UserDataService>();
             services.AddTransient<IShiftDataService, ShiftDataService>();
@@ -72,7 +71,7 @@ namespace Platibus.Web
                 .AddOpenIdConnect("oidc", x =>
                 {
                     x.SignInScheme = "Cookies";
-                    x.Authority = "https://localhost:5001/";
+                    x.Authority = "https://localhost:44323/";
                     x.RequireHttpsMetadata = false;
                     x.ClientId = "mvc";
                     x.SaveTokens = true;

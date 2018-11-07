@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices;
+using Platibus.Web.DataServices.Models.User;
 
 namespace Platibus.Web.Pages.Administrative
 {
@@ -15,12 +16,12 @@ namespace Platibus.Web.Pages.Administrative
          * in the system.
          */
         private IUserDataService userDataService;
-        private IUser user;
+        private User user;
 
-        public Administrative_CreateUserModel(IUserDataService _userDataService, IUser _user)
+        public Administrative_CreateUserModel(IUserDataService _userDataService)
         {
             this.userDataService = _userDataService;
-            this.user = _user;
+            this.user = new User();
         }
 
         /*Note: The name contains 'createUser' because the input type=

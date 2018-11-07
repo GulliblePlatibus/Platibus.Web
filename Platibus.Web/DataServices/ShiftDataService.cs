@@ -18,7 +18,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<Response> CreateShift(IShift shift)
         {
-            var baseUrl = _serverUrl + "/api/shift";
+            var baseUrl = _serverUrl + "/api/shifts";
 
             var response = await PostAsync<IShift>(baseUrl, shift);
             
@@ -37,7 +37,7 @@ namespace Platibus.Web.DataServices
         
         public async Task<IEnumerable<IShift>> ListUsersAsync()
         {
-            var baseurl = _serverUrl + "/api/shift"; //+specific url
+            var baseurl = _serverUrl + "/api/shifts"; //+specific url
             var result = await GetAsync(baseurl);
 
             var a = await TryReadAsync<IEnumerable<Shift>>(result);
