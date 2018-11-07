@@ -56,5 +56,12 @@ namespace Platibus.Web.DataServices
             
             return a;
         }
+
+        /*
+        public async Task<Response> UpdateUserById(Guid id, User user)
+        {
+            var baseurl = _serverUrl + "/api/users" + id;
+            return Response.Succes();
+        }*/ 
     }
 }

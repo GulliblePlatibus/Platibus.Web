@@ -14,8 +14,7 @@ namespace Platibus.Web.Pages.Administrative
     {
         IUserDataService _userDataService;
 
-        [BindProperty]
-        public IEnumerable<User> _Users { get; set; }
+        [BindProperty] public IEnumerable<User> _Users { get; set; }
 
         public Administrative_IndexModel(IUserDataService userDataService)
         {
@@ -31,11 +30,7 @@ namespace Platibus.Web.Pages.Administrative
         public async Task OnPostGetUsersAsync()
         {
             _Users = await _userDataService.ListUsersAsync(2, 2);
-
-            foreach (var VARIABLE in _Users)
-            {
-                Console.WriteLine(VARIABLE.Email);
-            }
+            
         }
     }
 }
