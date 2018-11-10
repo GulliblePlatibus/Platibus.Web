@@ -38,6 +38,25 @@ namespace Platibus.Web.DataServices
             return Response.Succes();
         }
 
+        
+        public async Task<Response> UpdateUserById(Guid id, User user)
+        {
+            var baseurl = _serverUrl + "/api/users" + id;
+
+            var response = await PutAsync<User>(baseurl, user);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                if(response.Content != null)
+                {
+                    var errorMsg = await response.Content.ReadAsStringAsync();
+                    return Response.Unsuccesfull(errorMsg);
+                }
+                return Response.Unsuccesfull(response.ReasonPhrase);
+            }
+            return Response.Succes();
+        }
+
         public async Task<User> GetUserById(Guid id)
         {
             var baseurl = _serverUrl + "/api/users/" + id; //<-- specific url here!
@@ -57,11 +76,5 @@ namespace Platibus.Web.DataServices
             return a;
         }
 
-        /*
-        public async Task<Response> UpdateUserById(Guid id, User user)
-        {
-            var baseurl = _serverUrl + "/api/users" + id;
-            return Response.Succes();
-        }*/ 
     }
 }

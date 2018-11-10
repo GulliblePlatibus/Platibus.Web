@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -86,6 +87,24 @@ namespace Platibus.Web.DataServices
             var httpContent = new StringContent(JsonConvert.SerializeObject(null, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
 
             return await client.PostAsync(baseurl, httpContent);
+        }
+
+        protected async Task<HttpResponseMessage> PutAsync<T>(string baseurl, T entity, bool isAuth = true) 
+        {
+            HttpClient client;
+
+            if (isAuth)
+            {
+                client = GetAuthorizedHttpClient();
+            }
+            else
+            {
+                client = new HttpClient();
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
+
+            return await client.PutAsync(baseurl, httpContent);
         }
 
         protected async Task<HttpResponseMessage> GetAsync(string baseurl, bool isAuth = true)

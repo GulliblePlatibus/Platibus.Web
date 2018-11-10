@@ -1,0 +1,50 @@
+﻿@page
+@model Platibus.Web.Pages.Administrative.Administrative_EditUsersModel
+
+@{ 
+    ViewData["Title"] = "User Index";
+}
+
+<h2>User Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._userList[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._userList[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._userList[0].AccesLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._userList[0].Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model._userList)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccesLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                <a asp-page="./Administrative_EditSingleUser" asp-route-id="@item.Id">Edit</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
