@@ -7,17 +7,22 @@
 <h2>Administrative</h2>
 <hr />
 
-    <a asp-page="./Administrative_CreateUser">
-        <div class="glyphicon glyphicon-user fa-5x" aria-hidden="true"></div>
-        <div>Create User</div>
-    </a>
+<a asp-page="./Administrative_CreateUser">
+    <div class="glyphicon glyphicon-user fa-5x" aria-hidden="true"></div>
+    <div>Create User</div>
+</a>
+
+<a asp-page="./Administrative_EditUsers">
+    <div class="glyphicon glyphicon-user fa-5x" aria-hidden="true"></div>
+    <div>Edit Users</div>
+</a>
 
 <hr />
 
 <div>
-<form method="post">
-    <input type="submit" class="btn btn-light" asp-page-handler="GetUsers" value="Get Users">
-</form>
+    <form method="post">
+        <input type="submit" class="btn btn-light" asp-page-handler="GetUsers" value="Get Users">
+    </form>
 </div>
 <div>
     <partial name="Partial_ListUsers" model="Model._Users" />
