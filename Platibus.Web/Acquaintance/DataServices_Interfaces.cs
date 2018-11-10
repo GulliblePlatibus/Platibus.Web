@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Platibus.Web.DataServices.Models.Shift;
 
 namespace Platibus.Web.Acquaintance.IDataServices
 {
@@ -34,8 +35,8 @@ namespace Platibus.Web.Acquaintance.IDataServices
 
     public interface IShiftDataService
     {
-        Task<Response> CreateShift(IShift shift);
-        Task<IEnumerable<IShift>> ListUsersAsync();
+        Task<Response> CreateShift(Shift shift);
+        Task<IEnumerable<Shift>> ListUsersAsync();
     }
 
 

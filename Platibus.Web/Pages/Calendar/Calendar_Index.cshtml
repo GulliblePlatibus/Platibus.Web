@@ -1,4 +1,5 @@
 ﻿@page
+@using Microsoft.CodeAnalysis.Emit
 @model Platibus.Web.Pages.Calendar.Calendar_IndexModel
 
 @{
@@ -51,6 +52,8 @@
 <input type="submit" class="btn btn-light" asp-page-handler="GetShifts" value="Get All shifts"> 
 </form>
     
+
+
     
 <table class="table table-bordered">
     <thead>
@@ -64,16 +67,45 @@
     </thead>
             
     <tbody>
-    @if (Model.Shifts.Count() > 0)
+    
+  
+    
+    
+
+       
+        
+    @foreach (var shift in Model.Shifts)
+
     {
-        foreach (var shift in Model.Shifts)
-        {
+
+
+        
+        <form method="post">
+       
             <tr>
                 <td>@shift.ShiftStart.ToString()</td>
-                <td>@shift.ShiftEnd.ToString()</td>
-                <td><a href="#">Delete Shift</a></td>
+                <td>
+                    @shift.ShiftStart.ToString()
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.name, Model.listItems, "-- Select Status --")
+                    <button asp-page-handler="AssignEmployee" type="submit" value="@shift.id" name="id" class="btn btn-default">Tjek</button>
+                    
+                </td>
             </tr>
-        }
+            </form>
+
+       
     }
+        
+    
+  
     </tbody>
 </table>
+
+<form method="post">
+@Html.DropDownListFor(model => model.name, Model.listItems, "-- Select Status --")
+
+<input type="submit" asp-page-handler="AssignEmployee" value="Assign User"/>
+
+</form>
