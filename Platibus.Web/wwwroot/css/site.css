@@ -38,6 +38,11 @@ body {
     font-size: 75px;
     width: 100%;
 }
+
+.center-div{
+    margin: auto;
+    width: 100px;
+}
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
