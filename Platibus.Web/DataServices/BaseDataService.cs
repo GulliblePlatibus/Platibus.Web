@@ -148,6 +148,29 @@ namespace Platibus.Web.DataServices
             return JsonConvert.DeserializeObject<IEnumerable<T>>(content);
         }
 
+        protected async Task<HttpResponseMessage> DeleteAsync(string baseUrl,  bool isAuth = true)
+        {
+            HttpClient client;
+
+            if (isAuth)
+            {
+                client = GetAuthorizedHttpClient();
+            }
+            else
+            {
+                client = new HttpClient();
+            }
+            
+            //Set the client to accept json in body
+            client.DefaultRequestHeaders
+                .Accept
+                .Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            
+            var httpContent = new StringContent(JsonConvert.SerializeObject(null, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
+
+            return await client.DeleteAsync(baseUrl);
+        }
+
 
         
         private HttpClient GetAuthorizedHttpClient()

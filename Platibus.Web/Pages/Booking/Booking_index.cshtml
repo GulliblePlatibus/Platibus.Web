@@ -4,5 +4,79 @@
     ViewData["Title"] = "Booking_index";
 }
 
+@section Styles {
+    <link href="@Url.Content("~/css/Booking.css")" rel="stylesheet" type="text/css" />
+}
+
 <h2>Booking_index</h2>
+
+<hr />
+
+<div class="row"> 
+    <div class="col-md-2">
+        <div class="form-group">
+            
+            <a asp-page="./Booking_CreateShift">
+                <i class="fas fa-plus fa-5x"></i>
+                <div>Add new shift</div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md">
+        <table class="table" >
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model._allShifts[0].ShiftStart)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._allShifts[0].ShiftEnd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model._allShifts[0].EmployeeOnShift)
+                </th>
+                <th>
+                    Options
+                </th>
+            </tr>
+            </thead>
+            
+            <tbody>
+            @foreach (var shift in @Model._allShifts)
+            {
+                <tr>
+                    <td >
+                        @Html.DisplayFor(model => shift.ShiftStart)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => shift.ShiftEnd)
+                    </td>
+                    <td>
+                        @foreach (var user in @Model.AllUsers)
+                        {
+                            if (user.Id.Equals(shift.EmployeeOnShift))
+                            {
+                                @Html.DisplayFor(model => user.Name)
+                            }
+                            else
+                            {
+                                @Html.Display("Ledig")
+                            }
+                        }
+                    </td>
+                    
+                    <td class="display-flex">
+                        <a asp-page="./Booking_EditShift" asp-route-id="@shift.id" >
+                            <i class="far fa-edit padding-10"></i>
+                        </a>
+                        <form method="post">
+                            <button  asp-page-handler="DeleteShift" type="submit" name="ShiftId" value="@shift.id" class="fas fa-trash fa-2x padding-10"></button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
 

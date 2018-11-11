@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Options;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.ConfigHelpers;
@@ -46,15 +47,47 @@ namespace Platibus.Web.DataServices
             return a;
         }
 
-        public async Task<Response> AddEmployeeToShift(Guid shiftId, Guid EmployeeId)
+        public async Task<Response> AddEmployeeToShift(Shift shift)
         {
-            var baseurl = _serverUrl + string.Format("/api/users/{0}/shifts/{1}", EmployeeId, shiftId);
-            var result = await PostAsync(baseurl);
+            var baseurl = _serverUrl + "/api/shifts/AddUser";
+
+            
+            var result = await PostAsync(baseurl , shift);
 
             if (!result.IsSuccessStatusCode)
             {
                 return Response.Unsuccesfull();
                 
+            }
+            
+            return Response.Succes();
+            
+        }
+
+        public async Task<Shift> GetShiftById(Guid id)
+        {
+            var baseurl = _serverUrl + string.Format("/api/shifts/{0}", id);
+            var result = await GetAsync(baseurl);
+
+            if (!result.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            return await TryReadAsync<Shift>(result);
+            
+
+        }
+
+        public async Task<Response> DeleteShiftById(Guid id)
+        {
+            var baseurl = _serverUrl + string.Format("/api/shifts/{0}", id);
+
+            var result = await DeleteAsync(baseurl);
+
+            if (!result.IsSuccessStatusCode)
+            {
+                return Response.Unsuccesfull();
             }
             
             return Response.Succes();
