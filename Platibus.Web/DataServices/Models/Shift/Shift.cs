@@ -10,6 +10,8 @@ namespace Platibus.Web.DataServices.Models.Shift
         [BindProperty]
         public Guid id { get; set; }
         
+        public Guid EmployeeOnShift { get; set; }
+        
         [BindProperty]
         public DateTime ShiftStart { get; set; }
         [BindProperty]

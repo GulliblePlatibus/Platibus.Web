@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
@@ -43,6 +44,21 @@ namespace Platibus.Web.DataServices
             var a = await TryReadAsync<IEnumerable<Shift>>(result);
             
             return a;
+        }
+
+        public async Task<Response> AddEmployeeToShift(Guid shiftId, Guid EmployeeId)
+        {
+            var baseurl = _serverUrl + string.Format("/api/users/{0}/shifts/{1}", EmployeeId, shiftId);
+            var result = await PostAsync(baseurl);
+
+            if (!result.IsSuccessStatusCode)
+            {
+                return Response.Unsuccesfull();
+                
+            }
+            
+            return Response.Succes();
+            
         }
     }
 }

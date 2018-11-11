@@ -110,7 +110,7 @@ namespace Platibus.Web.Pages.Calendar
             {
                 if (VARIABLE.Name.Equals(name))
                 {
-                    
+                    ShiftDataService.AddEmployeeToShift(id, VARIABLE.Id);
                 }
             }
 
@@ -131,6 +131,19 @@ namespace Platibus.Web.Pages.Calendar
                 });
             }
           
+        }
+
+        public async Task<string> getNameById(Guid Id)
+        {
+            var result = await UserDataService.GetUserById(Id);
+
+            if (result == null)
+            {
+                return "Ledig";
+                
+            }
+
+            return result.Name;
         }
     }
 }

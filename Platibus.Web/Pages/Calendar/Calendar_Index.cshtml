@@ -62,30 +62,35 @@
     <tr>
         <th>Start Time</th>
         <th>End time</th>
+        <th>Medarbejder</th>
         <th>Delete</th>
     </tr>
     </thead>
             
     <tbody>
-    
-  
-    
-    
-
-       
-        
     @foreach (var shift in Model.Shifts)
 
     {
-
-
-        
+        var a = await Model.getNameById(shift.EmployeeOnShift);
         <form method="post">
        
             <tr>
                 <td>@shift.ShiftStart.ToString()</td>
                 <td>
                     @shift.ShiftStart.ToString()
+                </td>
+                <td>
+                    @if (shift.EmployeeOnShift.Equals(Guid.Empty))
+                    {
+                     
+                    }
+                    else
+                    {
+                        
+                            
+                        
+                       @Html.DisplayFor(shiftItem => a);
+                    }
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.name, Model.listItems, "-- Select Status --")
