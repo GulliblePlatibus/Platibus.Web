@@ -5,7 +5,25 @@
     ViewData["Title"] = "Calendar_Index";
 }
 
+<script type="text/javascript" src="~/Calendar_/cscript.js"> </script>
+<link rel="stylesheet" type="text/css" href="~/Calendar_/style.css">
+
 <h2>Calendar_Index</h2>
+
+
+
+<div id="calendar">
+    <p id="calendar-day"></p>
+    <p id="calendar-date"></p>
+    <p id="calendar-month-year"></p>
+</div>
+
+<div id = "calendar-container">
+    <div id="calendar-header">
+        <span id="calendar-month-year2"></span>
+    </div>
+    <div id="calendar-dates"></div>
+</div>
 
 <form method="post">
     <input type="submit" class="btn btn-light" value="Get Users"> 

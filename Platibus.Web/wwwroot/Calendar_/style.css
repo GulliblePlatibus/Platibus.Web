@@ -1,0 +1,61 @@
+#calendar
+{
+    width: 10%;
+    height: 5%;
+    background-color: #1c7430;
+    color: #ffffff;
+    border-radius: 5%;
+    box-shadow: 0 4px 4px 0px rgba(50, 50 , 50, 0.4);
+}
+
+#calendar>p{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 1.5% 0;
+    margin: 1%;
+    color: #ffffff;
+    text-align: center;
+}
+
+#calendar-day{
+    font-size: 150%;
+}
+
+#calendar-date {
+    font-size: 450%;
+    padding-top: 1%;
+    padding-bottom: 0;
+}
+
+#calendar-month-year{
+    font-size: 125%;
+    
+}
+
+#calendar-container{
+    padding: 10px;
+    width: 210px;
+    height: 210px;
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    background-image: linear-gradient(#202326 , #1c7430);
+}
+
+#calendar-contaier>div{
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#calendar-month-year2{
+    margin: 5px;
+}
+
+#calendar-dates>table>tr>td>{
+    padding: 5px;
+    
+}
+
+
