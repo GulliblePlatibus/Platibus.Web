@@ -42,10 +42,12 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                <a asp-page="./Administrative_EditSingleUser" asp-route-id="@item.Id">Edit</a>
+                <a asp-page="./Administrative_EditSingleUser" asp-route-id="@item.Id"/>
+                <i class="glyphicon glyphicon-edit" title="Edit user data"></i>
             </td>
             <td>
-                <a asp-page="./Administrative_DeleteUser" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Administrative_DeleteUser" asp-route-id="@item.Id" />
+                <i class="glyphicon glyphicon-trash" title="Delete the user from the system"></i>
             </td>
         </tr>
         }
