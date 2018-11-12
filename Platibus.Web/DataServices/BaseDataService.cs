@@ -107,6 +107,15 @@ namespace Platibus.Web.DataServices
             return await client.PutAsync(baseurl, httpContent);
         }
 
+        protected async Task<HttpResponseMessage> DeleteAsync(string baseurl)
+        {
+            HttpClient client;
+
+            client = new HttpClient();
+
+            return await client.DeleteAsync(baseurl); 
+        }
+
         protected async Task<HttpResponseMessage> GetAsync(string baseurl, bool isAuth = true)
         {
             HttpClient client;

@@ -22,6 +22,8 @@ namespace Platibus.Web.Acquaintance.IDataServices
         /// <returns>A list of users on the specific page.</returns>
         Task<IEnumerable<User>> ListUsersAsync(int page, int pageSize);
 
+        Task<Response> UpdateUserById(Guid id, User user);
+        Task<Response> DeleteUserById(Guid id);
     }
 
 

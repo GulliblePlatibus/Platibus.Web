@@ -20,10 +20,6 @@
                 <input type="email" asp-for="user.Email" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="user.AccesLevel" class="control-label"></label>
-                <input asp-for="user.AccesLevel" class="form-control" />
-            </div>
-            <div class="form-group">
                 <select asp-for="user.AccesLevel" asp-items="Model.Items">
                     <option value="">Permission Level / Organizational Role</option>
                 </select>

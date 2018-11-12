@@ -17,6 +17,10 @@ private IUserDataService _userDataService;
         [BindProperty]
         public User user { get; set; }
 
+        public Guid guid { get; set; }
+
+        //SelectedlistItem with range 1-4, because the view automatically interprets this as options, 
+        //and can be easily bound to an attribute (in this case: user.AccessLevel)
         public List<SelectListItem> Items =>
         Enumerable.Range(1, 4).Select(x => new SelectListItem
         {
@@ -31,25 +35,31 @@ private IUserDataService _userDataService;
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if(id == null)
+            if (String.IsNullOrEmpty(id))
             {
-                return NotFound();
+                return new RedirectToPageResult("Error");
             }
 
-            Guid guid = Guid.Parse(id);
+            guid = Guid.Parse(id);
             
             user = await _userDataService.GetUserById(guid);
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostUpdateUserAsync()
+        public async Task<IActionResult> OnPostUpdateUserAsync(string id)
         {
+            guid = Guid.Parse(id);
+            
+            var response = await _userDataService.UpdateUserById(guid, user);
 
-            System.Diagnostics.Debug.WriteLine("Access: " + user.AccesLevel +
-                "\nName: " + user.Name + "\nEmail: " + user.Email);
+            if (!response.IsSuccesfull)
+            {
+                return new RedirectToPageResult("Error");
+            }
 
-            return Page();
+            return new RedirectToPageResult("./Administrative_EditUsers");
+           
         }
 
 

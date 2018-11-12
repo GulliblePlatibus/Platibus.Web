@@ -1,0 +1,26 @@
+﻿@page "{Id}"
+@model Platibus.Web.Pages.Administrative.Administrative_DeleteUserModel
+@{
+    ViewData["Title"] = "Administrative_DeleteUser";
+}
+
+<h2 align="center">Delete User</h2>
+
+<hr />
+
+<p align="center">You are about to delete the following user from the system: <hr /></p>
+
+<div class="center-div" style="width: 300px">
+    <div>Name: @Model.user.Name</div>
+    <hr />
+    <div> E-mail: @Model.user.Email </div>
+    <hr />
+    <div> ID: @Model.guid</div>
+    <hr />
+    <div>Press delete to permanently delete the user from the system (this action is not reversible)</div>
+    <hr /> 
+    <form method="post">
+        <input type="submit" asp-page-handler="DeleteUser" value="Confirm Delete" />
+    </form>
+
+</div>
