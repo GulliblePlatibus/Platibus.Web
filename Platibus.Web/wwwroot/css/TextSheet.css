@@ -18,6 +18,20 @@ h2 {
     line-height: 44px;
     letter-spacing: -2px;
     font-weight: bold;
+    text-align: center;
+}
+
+.open-sans {
+    color: #111;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 64px;
+    margin: 0 0 0;
+    padding: 20px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .normal-text {

@@ -4,5 +4,26 @@
     ViewData["Title"] = "UserInformation";
 }
 
-<h2>UserInformation</h2>
+<h2>User Information</h2>
+<hr />
 
+<div class="center-div" style="width: 400px">
+    <div>Name:</div>
+    <div class="center-div">@Model.user.Name</div>
+    <hr />
+    <div>E-mail:</div>
+    <div class="center-div">@Model.user.Email </div>
+    <hr />
+    <div>Company ID: </div>
+    <div class="center-div">@Model.user.Id</div>
+    <hr />
+    <div>Company Role:</div>
+    <div class="center-div">@Model.idString (Access Level @Model.user.AccesLevel</div>
+    <hr />
+    <br />
+    <br />
+    <div class="center-div" title="(note: Company ID & Access Level/Organizational Role can not be changed from here)">
+        <a asp-page="./EditInformation" asp-route-id=@Model.user.Id>Edit your information</a>
+    </div>
+
+</div>

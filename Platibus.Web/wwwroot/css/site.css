@@ -41,7 +41,7 @@ body {
 
 .center-div{
     margin: auto;
-    width: 100px;
+    width: 200px;
 }
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
