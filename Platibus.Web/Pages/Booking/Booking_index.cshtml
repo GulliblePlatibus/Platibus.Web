@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link href="@Url.Content("~/css/Booking.css")" rel="stylesheet" type="text/css" />
+    <link href="/css/Booking.css" rel="stylesheet" type="text/css" asp-append-version="true" />
 }
 
 <h2>Booking_index</h2>
@@ -22,8 +22,9 @@
             </a>
         </div>
     </div>
-    <div class="col-md">
-        <table class="table" >
+    
+    <div class="col-md-10 ">
+        <table  id="table" class="table-bordered table-striped table-hover" style="width:100%" >
             <thead>
             <tr>
                 <th>
@@ -68,10 +69,10 @@
                     <td class="display-flex">
                         
                         <a asp-page="./Booking_EditShift" asp-route-id="@shift.id" >
-                            <i class="far fa-edit padding-10"></i>
+                            <i class="far fa-edit padding-5"></i>
                         </a>
                         <form method="post">
-                            <button  asp-page-handler="DeleteShift" type="submit" name="ShiftId" value="@shift.id" class="fas fa-trash fa-2x padding-10"></button>
+                            <button  asp-page-handler="DeleteShift" type="submit" name="ShiftId" value="@shift.id" class="fas fa-trash fa-2x padding-5"></button>
                         </form>
                     </td>
                 </tr>
@@ -81,3 +82,77 @@
     </div>
 </div>
 
+<h3>Employees on this current week</h3>
+
+<div class="container dayRow">
+    <div class="row">
+        @{
+            var today = DateTime.Now;
+            var thisSunday = today.AddDays(-(int)today.DayOfWeek+1);
+
+            for (int i = 0; i < 7; i++)
+            {
+                <div class="col">
+                    @Html.DisplayName(thisSunday.AddDays(i).DayOfWeek.ToString())
+                     
+                </div>
+            }
+
+        }
+
+    </div>
+    
+    <div class="row">
+        @{
+            
+
+            for (int i = 0; i < 7; i++)
+            {
+                <div class="col employeeColumn">
+                    @foreach (var item in Model._allShifts)
+                    {
+                        if (item.ShiftStart.Date.Equals(thisSunday.AddDays(i).Date))
+                        {
+                            foreach (var user in Model.AllUsers)
+                            {
+                                if (user.Id.Equals(item.EmployeeOnShift))
+                                {
+                                    @Html.DisplayFor(model => user.Name)
+                                    <p class="totalTimeMargin">total time</p>
+                                                                     
+                                    @Html.DisplayName(item.ShiftEnd.Subtract(item.ShiftStart).TotalHours.ToString())
+                                }
+                            }
+                        }
+                        
+                    }
+                     
+                    
+                </div>
+            }
+
+        }
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table').DataTable({
+                "info": false,
+                "language": {
+                    "lengthMenu": "",
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Showing page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)"
+                }
+        });
+            $('#table_filter input').addClass('filter');
+        });
+    </script>
+}
