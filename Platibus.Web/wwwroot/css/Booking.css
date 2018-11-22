@@ -3,6 +3,34 @@
 }
 
 .padding-10 {
-    padding: 10px;
+    padding: 5px;
+    margin: 2em;
    }
+.padding-5 {
+    padding: 5px;
+}
 
+.example_filter input {
+    border-style: solid;
+    border-width: 1px;
+    margin: 5px;
+}
+
+.filter input {
+    border-style: solid;
+}
+
+.dayRow {
+    margin-top: 10px;
+    padding-top: 30px;
+    
+}
+
+.employeeColumn {
+    margin-top: 20px;
+    
+}
+
+.totalTimeMargin {
+    margin-top: 10px;
+}
