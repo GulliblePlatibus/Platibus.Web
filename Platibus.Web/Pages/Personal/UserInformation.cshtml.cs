@@ -42,7 +42,7 @@ namespace Platibus.Web.Pages.User_Pages
 
            // idString = user.Id.ToString();
 
-            switch (user.AccesLevel)
+            switch (user.AccessLevel)
             {
                 case 0:
                     idString = "Role undefined";

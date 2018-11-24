@@ -10,7 +10,7 @@ namespace Platibus.Web.DataServices.Models.User
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int AccesLevel { get; set; }
+        public int AccessLevel { get; set; }
         public Guid Id { get; set; }
     }
 }

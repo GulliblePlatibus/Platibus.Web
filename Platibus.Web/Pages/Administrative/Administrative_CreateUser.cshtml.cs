@@ -71,7 +71,7 @@ namespace Platibus.Web.Pages.Administrative
                 Email = user_email,
                 Name = user_realName,
                 Password = user_password,
-                AccesLevel = authNiveau
+                AccessLevel = authNiveau
             });
 
             if (!response.IsSuccesfull)

@@ -12,7 +12,7 @@ namespace Platibus.Web.Pages.Administrative
 {
     public class Administrative_EditSingleUserModel : PageModel
     {
-private IUserDataService _userDataService;
+        private IUserDataService _userDataService;
         
         [BindProperty]
         public User user { get; set; }

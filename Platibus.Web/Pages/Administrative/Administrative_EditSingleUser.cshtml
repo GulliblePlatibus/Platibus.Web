@@ -20,9 +20,13 @@
                 <input type="email" asp-for="user.Email" class="form-control" />
             </div>
             <div class="form-group">
-                <select asp-for="user.AccesLevel" asp-items="Model.Items">
+                <select asp-for="user.AccessLevel" asp-items="Model.Items">
                     <option value="">Permission Level / Organizational Role</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Password" class="control-label">New Password</label>
+                <input type="password" asp-for="user.Password" class="form-control"/>
             </div>
             <div class="form-group">
                 <input type="submit" asp-page-handler="UpdateUser" value="Update User" />

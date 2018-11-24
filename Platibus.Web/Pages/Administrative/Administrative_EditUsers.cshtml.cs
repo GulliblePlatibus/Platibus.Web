@@ -25,7 +25,7 @@ namespace Platibus.Web.Pages.Administrative
         public async Task OnGetAsync()
         {
             _users = await _userDataService.ListUsersAsync(0, 10);
-            _userList = _users.ToList(); 
+            _userList = _users.ToList();
         }
     }
 }

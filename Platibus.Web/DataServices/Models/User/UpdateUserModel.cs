@@ -7,12 +7,12 @@ namespace Platibus.Web.DataServices.Models.User
 {
     public class UpdateUserModel
     {
-        public UpdateUserModel(string name, string email, string password, int accesLevel)
+        public UpdateUserModel(string name, string email, string password, int accessLevel)
         {
             Name = name;
             Email = email;
             Password = password;
-            AccessLevel = accesLevel;
+            AccessLevel = accessLevel;
         }
 
         public string Name { get; set; }

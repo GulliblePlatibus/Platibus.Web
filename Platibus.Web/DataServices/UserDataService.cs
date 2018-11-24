@@ -43,7 +43,8 @@ namespace Platibus.Web.DataServices
         {
             var baseurl = _serverUrl + "/api/users/" + id;
 
-            var response = await PutAsync<UpdateUserModel>(baseurl, new UpdateUserModel(user.Name, user.Email, "test", user.AccesLevel));
+            //Type argument specification NOT redundant, will fail to build!
+            var response = await PutAsync<UpdateUserModel>(baseurl, new UpdateUserModel(user.Name, user.Email, user.Password, user.AccessLevel));
 
             if (!response.IsSuccessStatusCode)
             {
