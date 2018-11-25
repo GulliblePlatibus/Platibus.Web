@@ -18,11 +18,16 @@
                 <label asp-for="_user.Email" class="control-label"></label>
                 <input type="email" asp-for="_user.Email" class="form-control" />
             </div>
-                <label asp-for="_user.Password" class="control-label"></label>
-                <input type="password" asp-for="_user.Password" class="form-control"/>
+            <label asp-for="_user.Password" class="control-label"></label>
+            <input type="password" asp-for="_user.Password" class="form-control"/>
             <div class="form-group">
                 <input type="submit" asp-page-handler="UpdateUser" value="Update User" />
             </div>
         </form>
     </div>
 </div>
+
+<hr/>
+<br/>
+<h4>Note!:</h4>
+<p>If you do not wish to update a attribute above, just leave that field empty or at default, and it will be unaffected.</p>
