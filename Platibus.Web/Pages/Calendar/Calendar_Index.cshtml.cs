@@ -15,6 +15,8 @@ namespace Platibus.Web.Pages.Calendar
     public class Calendar_IndexModel : PageModel
     {
         public IUserDataService UserDataService { get; set; }
+        public DateTime StartDate { get; set; }
+        
  
         [BindProperty]
         public IEnumerable<User> _Users { get; set; }
@@ -25,7 +27,7 @@ namespace Platibus.Web.Pages.Calendar
         {
             UserDataService = userDataService;
             _Users = new List<User>();
-
+            StartDate = DateTime.Now;
         }
 
 

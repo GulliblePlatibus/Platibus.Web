@@ -5,25 +5,69 @@
     ViewData["Title"] = "Calendar_Index";
 }
 
-<script type="text/javascript" src="~/Calendar_/cscript.js"> </script>
-<link rel="stylesheet" type="text/css" href="~/Calendar_/style.css">
 
 <h2>Calendar_Index</h2>
 
+<table border="1">
+    <thead>
+    <tr>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        @for (int i = 0; i < 35; i++)
+        {
+            DateTime date = @Model.StartDate.AddDays(i);
+            
+            
+            if (i % 7 == 0 && i > 0)
+            {
+                @:</tr><tr>
+            }
+            
+            <td>@date.Day</td>
+        }
+    </tr>
+    </tbody>
+</table> 
+
+<script type="text/javascript" src="~/Calendar_/cscript.js"> </script>
+<script type="text/javascript" src="~/Calendar_/calendarscript.js"> </script>
+<link rel="stylesheet" type="text/css" href="~/Calendar_/style.css">
 
 
+
+
+
+<!--
 <div id="calendar">
     <p id="calendar-day"></p>
     <p id="calendar-date"></p>
     <p id="calendar-month-year"></p>
 </div>
+-->
 
-<div id = "calendar-container">
-    <div id="calendar-header">
-        <span id="calendar-month-year2"></span>
+<div id="calendar-container">
+    <div id="calendar-header" data-value="0";>
+        <button id="previous-button" type="button" onclick="prev_calendar();"> < </button>
+        <span id="calendar-month2"></span>
+        <span id="calendar-year2"></span>
+        <button id="Next-button" type="button" onclick="next_calendar();"> > </button>
     </div>
-    <div id="calendar-dates"></div>
+    <div id="calendar-dates">
+    </div>
 </div>
+
+
+
+
 
 <form method="post">
     <input type="submit" class="btn btn-light" value="Get Users"> 
