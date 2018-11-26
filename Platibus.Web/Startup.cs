@@ -58,6 +58,7 @@ namespace Platibus.Web
             services.AddTransient<IShift, Shift>();
             services.AddTransient<IUserDataService, UserDataService>();
             services.AddTransient<IShiftDataService, ShiftDataService>();
+            services.AddTransient<IWorkScheduleDataService, WorkScheduleDataService>();
 
             
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

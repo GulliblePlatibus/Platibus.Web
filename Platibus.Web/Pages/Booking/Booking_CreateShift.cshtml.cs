@@ -25,6 +25,9 @@ namespace Platibus.Web.Pages.Booking
         
         [BindProperty]
         public User user { get; set; }
+        
+        [BindProperty]
+        public int numberOfShifts { get; set; }
 
         public Booking_CreateShift(IShiftDataService shiftDataService , IUserDataService userDataService)
         {
@@ -48,19 +51,23 @@ namespace Platibus.Web.Pages.Booking
             
         }
 
-        public async Task<IActionResult> OnPostCreateShiftAsync(User user , Shift shift)
+        public async Task<IActionResult> OnPostCreateShiftAsync(User user , Shift shift , int numberOfShifts)
         {
-            if (user.Id.Equals(Guid.Empty))
-            {
-                var result = _shiftDataService.CreateShift(shift);
-            }
-            else
-            {
-                var create = await _shiftDataService.CreateShift(shift);
-                var result = _shiftDataService.AddEmployeeToShift(shift);
-            }
+
+            var list = new ListOfShifts();
+            list.listOfShifts = new List<Shift>();
             
-            
+
+            for (int i = 0; i < numberOfShifts; i++)
+            {
+                list.listOfShifts.Add(new Shift{ShiftEnd = shift.ShiftEnd , ShiftStart = shift.ShiftStart});
+                
+                
+            }
+
+            var result = _shiftDataService.CreateManyShifts(list);
+          
+           
             
             return RedirectToPage("/Booking/Booking_index");
         }

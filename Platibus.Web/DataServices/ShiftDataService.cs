@@ -37,6 +37,25 @@ namespace Platibus.Web.DataServices
             return Response.Succes();
         }
         
+        public async Task<Response> CreateManyShifts(ListOfShifts shifts)
+        {
+            var baseUrl = _serverUrl + "/api/shifts/AddManyShifts";  
+
+            var response = await PostAsync<ListOfShifts>(baseUrl, shifts);
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.Content != null)
+                {
+                    var errorMsg = await response.Content.ReadAsStringAsync();
+                    return Response.Unsuccesfull(errorMsg);
+                }
+                return Response.Unsuccesfull(response.ReasonPhrase);
+            }
+
+            return Response.Succes();
+        }
+        
         public async Task<IEnumerable<Shift>> ListUsersAsync()
         {
             var baseurl = _serverUrl + "/api/shifts"; //+specific url

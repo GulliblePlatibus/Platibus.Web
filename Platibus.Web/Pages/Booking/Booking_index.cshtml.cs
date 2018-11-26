@@ -7,38 +7,43 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.Shift;
 using Platibus.Web.DataServices.Models.User;
+using Platibus.Web.DataServices.Models.WorkSchedule;
 
 namespace Platibus.Web.Pages.Booking
 {
     public class Booking_indexModel : PageModel
     {
-        private readonly IShiftDataService _shiftDataService;
+        private readonly IWorkScheduleDataService _workScheduleDataService;
         private readonly IUserDataService _userDataService;
 
         [BindProperty]
-        public List<Shift> _allShifts { get; set; }
+        public List<AllShiftsWithEmployees> _allWorkSchedule { get; set; }
+        
         [BindProperty]
         public List<User> AllUsers { get; set; }
+        
+        
 
-        public Booking_indexModel(IShiftDataService shiftDataService , IUserDataService userDataService)
+        public Booking_indexModel(IWorkScheduleDataService workScheduleDataService , IUserDataService userDataService)
         {
-            _shiftDataService = shiftDataService;
+            _workScheduleDataService = workScheduleDataService;
             _userDataService = userDataService;
-            _allShifts = new List<Shift>();
-            AllUsers = new List<User>();
+
+            _allWorkSchedule = new List<AllShiftsWithEmployees>();
         }
         
         public async Task OnGetAsync()
         {
-            _allShifts = await _shiftDataService.ListUsersAsync() as List<Shift>;
+            _allWorkSchedule = await _workScheduleDataService.GetAllWorkSchedules() as List<AllShiftsWithEmployees>;
             AllUsers = await _userDataService.ListUsersAsync(2, 2) as List<User>;
-            Console.WriteLine("");
+
         }
 
         public async Task<IActionResult> OnPostDeleteShiftAsync(Guid ShiftId)
         {
-            var result = await _shiftDataService.DeleteShiftById(ShiftId);
-            return RedirectToPage("/Booking/Booking_index");
+            //var result = await _shiftDataService.DeleteShiftById(ShiftId);
+            //return RedirectToPage("/Booking/Booking_index");
+            return null;
         }
     }
 }

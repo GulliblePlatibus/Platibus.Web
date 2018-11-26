@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Platibus.Web.DataServices.Models.Shift;
+using Platibus.Web.DataServices.Models.WorkSchedule;
 
 namespace Platibus.Web.Acquaintance.IDataServices
 {
@@ -39,10 +40,15 @@ namespace Platibus.Web.Acquaintance.IDataServices
     {
         Task<Response> CreateShift(Shift shift);
         Task<IEnumerable<Shift>> ListUsersAsync();
+        Task<Response> CreateManyShifts(ListOfShifts shifts);
         Task<Response> AddEmployeeToShift(Shift shift);
         Task<Shift> GetShiftById(Guid id);
         Task<Response> DeleteShiftById(Guid id);
     }
 
 
+    public interface IWorkScheduleDataService
+    {
+        Task<IEnumerable<AllShiftsWithEmployees>> GetAllWorkSchedules();
+    }
 }

@@ -61,7 +61,7 @@ namespace Platibus.Web.Pages.Booking
                 return null; // More check and redirect to error page
             }
 
-            shift.EmployeeOnShift = user.Id;
+            //shift.EmployeeOnShift = user.Id;
 
             var result = await _shiftDataService.AddEmployeeToShift(shift);
             

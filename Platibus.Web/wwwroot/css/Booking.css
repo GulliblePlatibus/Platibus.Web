@@ -23,6 +23,7 @@
 .dayRow {
     margin-top: 10px;
     padding-top: 30px;
+    border-style: ridge;
     
 }
 
@@ -33,4 +34,23 @@
 
 .totalTimeMargin {
     margin-top: 10px;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.center {
+    justify-content: center;
+    display: flex;
+} 
+
+.col {
+    border-style: groove;
 }

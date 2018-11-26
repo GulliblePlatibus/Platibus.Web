@@ -49,7 +49,8 @@ namespace Platibus.Web.DataServices
             client.DefaultRequestHeaders
                 .Accept
                 .Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            
+
+            var cont = JsonConvert.SerializeObject(entity, Formatting.Indented);
             var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
 
             HttpResponseMessage httpResponse = null;
@@ -88,6 +89,44 @@ namespace Platibus.Web.DataServices
 
             return await client.PostAsync(baseurl, httpContent);
         }
+        
+        protected async Task<HttpResponseMessage> PostManyAsync<T>(string baseurl, T entity, bool isAuth = true)
+        {
+            HttpClient client;
+
+
+            if (isAuth)
+            {
+                client = GetAuthorizedHttpClient();
+            }
+            else
+            {
+                client = new HttpClient();
+            }
+            
+            //Set the client to accept json in body
+            client.DefaultRequestHeaders
+                .Accept
+                .Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            var cont = JsonConvert.SerializeObject(entity, Formatting.Indented);
+            var httpContent = new StringContent(JsonConvert.SerializeObject(entity, Formatting.Indented), System.Text.Encoding.UTF8, "application/json");
+
+            HttpResponseMessage httpResponse = null;
+
+            try {
+                httpResponse = await client.PostAsync(baseurl, httpContent);
+            }
+            catch(Exception ex) // TODO : Implement socket exception
+            {
+
+            }
+
+            return httpResponse;
+            
+        }
+
+       
 
         protected async Task<HttpResponseMessage> PutAsync<T>(string baseurl, T entity, bool isAuth = true) 
         {
