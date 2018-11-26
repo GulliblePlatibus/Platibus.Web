@@ -38,7 +38,7 @@
                                 <div class="pull-left">
                                     <a asp-page="/Personal/UserInformation" class="btn btn-default btn-flat">Profile</a>
                                 </div>
-                                <form asp-area="" method="post" id="logoutForm">
+                                <form  asp-area="" asp-controller="Manage" asp-action="signOut" method="post">
                                     <div class="pull-right">
                                         <button type="submit" class="btn btn-default btn-flat">Sign out</button>
                                     </div>
