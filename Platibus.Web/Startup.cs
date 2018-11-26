@@ -28,6 +28,8 @@ namespace Platibus.Web
     {
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _environment;
+
+        public static Guid subjectId { get; set; }
         
         public Startup(IHostingEnvironment env, IConfiguration config)
         {
@@ -59,7 +61,7 @@ namespace Platibus.Web
             services.AddTransient<IUserDataService, UserDataService>();
             services.AddTransient<IShiftDataService, ShiftDataService>();
             services.AddTransient<IWorkScheduleDataService, WorkScheduleDataService>();
-
+            services.AddTransient<IStaticWebResources, StaticWebResources>();
             
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 

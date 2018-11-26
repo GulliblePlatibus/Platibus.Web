@@ -28,7 +28,9 @@ namespace Platibus.Web.Pages.User_Pages
         {
             //Change so it is the currently logged in User!!!
             //var id = "387eb00f-7420-45e9-abd9-a5229554115f";
-            var id = WebExtensions.SubjectId;
+            var id = Startup.subjectId;
+            
+            
             
             try
             {

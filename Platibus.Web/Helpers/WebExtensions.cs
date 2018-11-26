@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Platibus.Web.Acquaintance.IDataServices;
 
 namespace Platibus.Web.Helpers
 {
@@ -14,17 +15,20 @@ namespace Platibus.Web.Helpers
         private const string TypeName = "name";
 
         public static Guid SubjectId { get; private set; }
-        
+
         public static TokenValidatedContext ResolveClaims(this TokenValidatedContext context)
         {
             //Get jwt token issued by identityProvider
             var jwt = context.SecurityToken;
 
             var subjectId = jwt.Subject;
+            
             if (subjectId != null)
             {
                 SubjectId = Guid.Parse(subjectId);
+                Startup.subjectId = Guid.Parse(subjectId);
             }
+            
             
             //Extract claims from jwt token
             var claims = new List<Claim>(jwt.Claims);
