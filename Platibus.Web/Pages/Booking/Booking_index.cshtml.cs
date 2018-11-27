@@ -13,8 +13,10 @@ namespace Platibus.Web.Pages.Booking
 {
     public class Booking_indexModel : PageModel
     {
+       
         private readonly IWorkScheduleDataService _workScheduleDataService;
         private readonly IUserDataService _userDataService;
+        private readonly IShiftDataService _shiftDataService;
 
         [BindProperty]
         public List<AllShiftsWithEmployees> _allWorkSchedule { get; set; }
@@ -24,10 +26,12 @@ namespace Platibus.Web.Pages.Booking
         
         
 
-        public Booking_indexModel(IWorkScheduleDataService workScheduleDataService , IUserDataService userDataService)
+        public Booking_indexModel(IWorkScheduleDataService workScheduleDataService , IUserDataService userDataService , IShiftDataService shiftDataService)
         {
+           
             _workScheduleDataService = workScheduleDataService;
             _userDataService = userDataService;
+            _shiftDataService = shiftDataService;
 
             _allWorkSchedule = new List<AllShiftsWithEmployees>();
         }
@@ -41,9 +45,9 @@ namespace Platibus.Web.Pages.Booking
 
         public async Task<IActionResult> OnPostDeleteShiftAsync(Guid ShiftId)
         {
-            //var result = await _shiftDataService.DeleteShiftById(ShiftId);
-            //return RedirectToPage("/Booking/Booking_index");
-            return null;
+            var result = await _shiftDataService.DeleteShiftById(ShiftId);
+            return RedirectToPage("/Booking/Booking_index");
+            
         }
     }
 }

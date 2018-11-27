@@ -7,6 +7,7 @@ using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.ConfigHelpers;
 using Platibus.Web.DataServices.Models.Shift;
 using Platibus.Web.DataServices.Models.User;
+using Platibus.Web.DataServices.Models.WorkSchedule;
 using Platibus.Web.Documents;
 
 namespace Platibus.Web.DataServices
@@ -66,12 +67,12 @@ namespace Platibus.Web.DataServices
             return a;
         }
 
-        public async Task<Response> AddEmployeeToShift(Shift shift)
+        public async Task<Response> AddEmployeeToShift(AssignUserToShift assignUserToShift)
         {
             var baseurl = _serverUrl + "/api/shifts/AddUser";
 
             
-            var result = await PostAsync(baseurl , shift);
+            var result = await PostAsync(baseurl , assignUserToShift);
 
             if (!result.IsSuccessStatusCode)
             {

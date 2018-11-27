@@ -7,36 +7,62 @@
 
 }
 
-<div class="row">
-    <div class="col-md-4 center-div">
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="shift.ShiftStart" class="control-label"></label>
-                <input asp-for="shift.ShiftStart" class="form-control" />
+
+
+
+
+<div class="row justify-content-lg-center">
+    <div class="col-lg-10">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title text-primary"><i class="fas fa-user"></i>  Administrative Page</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body center-admin">
+               
                 
-            </div>
-            <div class="form-group">
-                <label asp-for="shift.ShiftEnd" class="control-label"></label>
-                <input asp-for="shift.ShiftEnd" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label  class="control-label">Add a employee to the shift</label> <br></br>
-                @Html.DropDownListFor(model => model.user.Id, Model.UserList, "Empty Shift")
-            </div>
+                <!-- Content -->
+               
+                <div class="row justify-content-center">
+                    <div class="col-md-4 center-div">
+                        <form method="post">
+                            <div class="form-group">
+                                <label asp-for="shift.ShiftStart" class="control-label"></label>
+                                <input asp-for="shift.ShiftStart" class="form-control" />
+                
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="shift.ShiftEnd" class="control-label"></label>
+                                <input asp-for="shift.ShiftEnd" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label  class="control-label">Add a employee to the shift</label> <br></br>
+                                @Html.DropDownListFor(model => model.user.Id, Model.UserList, "Empty Shift")
+                            </div>
             
-            <div class="form-group">
-                <label  class="control-label">How many of this shift</label> <br></br>
-                <input type="number" asp-for="numberOfShifts"/>
-            </div>
+                            <div class="form-group">
+                                <label  class="control-label">How many of this shift</label> <br></br>
+                                <input type="number" asp-for="numberOfShifts"/>
+                            </div>
             
 
-            <div class="form-group">
-                <input type="hidden" asp-for="shift.id"/>
-                <button type="submit" asp-page-handler="CreateShift" class="far fa-check-square fa-4x"></button>
+                            <div class="form-group">
+                                <input type="hidden" asp-for="shift.id"/>
+                                <button type="submit" asp-page-handler="CreateShift" class="far fa-check-square fa-4x"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End content -->
             </div>
-        </form>
+        </div>
     </div>
 </div>
-
-
-

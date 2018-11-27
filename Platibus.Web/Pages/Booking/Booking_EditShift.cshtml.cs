@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.Shift;
 using Platibus.Web.DataServices.Models.User;
+using Platibus.Web.DataServices.Models.WorkSchedule;
 
 namespace Platibus.Web.Pages.Booking
 {
@@ -62,8 +63,15 @@ namespace Platibus.Web.Pages.Booking
             }
 
             //shift.EmployeeOnShift = user.Id;
+            var shiftWithEmployee = new AssignUserToShift
+            {
+                EmployeeOnShift = user.Id,
+                id = shift.id,
+                ShiftStart = shift.ShiftStart,
+                ShiftEnd = shift.ShiftEnd
+            };
 
-            var result = await _shiftDataService.AddEmployeeToShift(shift);
+            var result = await _shiftDataService.AddEmployeeToShift(shiftWithEmployee);
             
             return RedirectToPage("/Booking/Booking_index");
         }

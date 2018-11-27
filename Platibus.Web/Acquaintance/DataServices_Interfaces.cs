@@ -41,7 +41,7 @@ namespace Platibus.Web.Acquaintance.IDataServices
         Task<Response> CreateShift(Shift shift);
         Task<IEnumerable<Shift>> ListUsersAsync();
         Task<Response> CreateManyShifts(ListOfShifts shifts);
-        Task<Response> AddEmployeeToShift(Shift shift);
+        Task<Response> AddEmployeeToShift(AssignUserToShift assignUserToShift);
         Task<Shift> GetShiftById(Guid id);
         Task<Response> DeleteShiftById(Guid id);
     }
