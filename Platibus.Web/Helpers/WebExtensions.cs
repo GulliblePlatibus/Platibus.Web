@@ -73,6 +73,7 @@ namespace Platibus.Web.Helpers
             
             foreach (var claim in user.Claims)
             {
+                
                 if (claim.Type.Equals(SUB))
                 {
                     //Try parse

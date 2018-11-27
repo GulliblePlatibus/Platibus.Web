@@ -9,9 +9,9 @@ namespace Platibus.Web.Helpers
         public Guid SubjectId { get; set; }
 
 
-        public StaticWebResources(IUserDataService userDataService)
+        public StaticWebResources()
         {
-            _userDataService = userDataService;
+            
         }
         
         

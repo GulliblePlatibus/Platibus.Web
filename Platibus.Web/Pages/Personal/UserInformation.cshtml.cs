@@ -9,13 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
 using Platibus.Web.Acquaintance.IDataServices;
+using Platibus.Web.Controllers;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Pages.User_Pages
 {
     [Authorize]
-    public class UserInformationModel : PageModel
+    public class UserInformationModel :  PageModel
     {
         private readonly IUserDataService _userDataService;
         private readonly IStaticWebResources _webResources;

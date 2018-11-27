@@ -1,4 +1,5 @@
-﻿
+﻿@using Platibus.Web.Helpers
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,9 +90,10 @@
     
 
     <div class="wrapper">
-        @Html.Partial("~/Pages/Shared/_AdminlteMainHeader.cshtml")
+
+        @await Component.InvokeAsync("AdminlteMainHeader")
         <!-- Left side column. contains the logo and sidebar -->
-        @Html.Partial("~/Pages/Shared/_AdminlteMainSidebar.cshtml")
+        @await Component.InvokeAsync("AdminlteMainSidebar")
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
