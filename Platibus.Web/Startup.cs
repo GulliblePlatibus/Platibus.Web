@@ -21,6 +21,7 @@ using Platibus.Web.Pages;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.Shift;
+using Platibus.Web.Middleware;
 
 namespace Platibus.Web
 {
@@ -97,6 +98,9 @@ namespace Platibus.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCustomAuthLookupMiddleware();
+            
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -1,11 +1,11 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Platibus.Web.Acquaintance.IDataServices;
 
 namespace Platibus.Web.Helpers
@@ -14,21 +14,20 @@ namespace Platibus.Web.Helpers
     {
         private const string TypeName = "name";
 
-        public static Guid SubjectId { get; private set; }
+        //public static Guid SubjectId { get; private set; }
 
         public static TokenValidatedContext ResolveClaims(this TokenValidatedContext context)
         {
             //Get jwt token issued by identityProvider
             var jwt = context.SecurityToken;
-
+            
             var subjectId = jwt.Subject;
             
             if (subjectId != null)
             {
-                SubjectId = Guid.Parse(subjectId);
+                //SubjectId = Guid.Parse(subjectId);
                 Startup.subjectId = Guid.Parse(subjectId);
             }
-            
             
             //Extract claims from jwt token
             var claims = new List<Claim>(jwt.Claims);
@@ -63,6 +62,27 @@ namespace Platibus.Web.Helpers
             }
             
             return context;
+        }
+
+        public static Guid SubjectId(this HttpContext httpContext)
+        {
+            const string SUB = "sub";
+            var user = httpContext.User;
+
+            Guid subjectId = Guid.Empty;
+            
+            foreach (var claim in user.Claims)
+            {
+                if (claim.Type.Equals(SUB))
+                {
+                    //Try parse
+                    if (Guid.TryParse(claim.Value, out subjectId))
+                    {
+                        return subjectId;
+                    }
+                }
+            }
+            return subjectId;
         }
     }
 }

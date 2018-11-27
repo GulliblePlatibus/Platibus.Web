@@ -42,6 +42,14 @@ namespace Platibus.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> signOut()
         {
+            var headers = Request.Headers;
+            
+            
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
             
@@ -53,8 +61,5 @@ namespace Platibus.Web.Controllers
             
             return RedirectToPage("");
         }
-        
-    }
-    
-    
+    } 
 }
