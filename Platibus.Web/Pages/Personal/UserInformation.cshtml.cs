@@ -39,19 +39,20 @@ namespace Platibus.Web.Pages.User_Pages
         {
             //Change so it is the currently logged in User!!!
             //var id = "387eb00f-7420-45e9-abd9-a5229554115f";
-            var id = _webResources.SubjectId;
+            
 
             var ui = HttpContext;
 
             var token = await HttpContext.GetTokenAsync("access_token");
 
             var a = HttpContext.Request.Headers.TryGetValue("access_token", out var token1);
-            
-            
+
+            var id = HttpContext.SubjectId();
             try
             {
                // user = await _userDataService.GetUserById(Guid.Parse(id));
                 user = await _userDataService.GetUserById(id);
+                
             }
             catch (HttpRequestException ex)
             {

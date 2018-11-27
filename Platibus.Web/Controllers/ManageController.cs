@@ -1,8 +1,11 @@
 using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Platibus.Web.Acquaintance.IDataServices;
+using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Controllers
 {
@@ -19,7 +22,7 @@ namespace Platibus.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var userid = Startup.subjectId;
+            var userid = HttpContext.SubjectId();
 
             var user = await _userDataService.GetUserById(userid);
 
@@ -42,24 +45,19 @@ namespace Platibus.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> signOut()
         {
-            var headers = Request.Headers;
             
-            
-            foreach (var cookie in Request.Cookies.Keys)
-            {
-                Response.Cookies.Delete(cookie);
-            }
-            
+            HttpClient a = new HttpClient();
+
+            // await a.GetAsync("https://localhost:5001/account/logout");
+
+            Console.WriteLine();
+
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
             
-            foreach (var cookie in Request.Cookies.Keys)
-            {
-                Response.Cookies.Delete(cookie);
-            }
-            Startup.subjectId = Guid.Empty;
             
-            return RedirectToPage("");
+            
+            return Redirect("/");
         }
     } 
 }

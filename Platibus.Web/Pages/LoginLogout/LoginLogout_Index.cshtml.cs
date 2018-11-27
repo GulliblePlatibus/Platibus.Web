@@ -19,7 +19,7 @@ namespace Platibus.Web.Pages.LoginLogout
         
         public void OnGet()
         {
-            Console.WriteLine(WebExtensions.SubjectId);
+           
         }
 
         public async void OnPost()

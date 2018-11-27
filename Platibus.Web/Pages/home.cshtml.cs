@@ -8,6 +8,7 @@ namespace Platibus.Web.Pages
     [Authorize]
     public class homeModel : PageModel
     {
+        [Authorize]
         public void OnGet()
         {
            
