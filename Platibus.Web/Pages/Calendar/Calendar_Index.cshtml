@@ -1,10 +1,115 @@
 ﻿@page
-@using Microsoft.CodeAnalysis.Emit
 @model Platibus.Web.Pages.Calendar.Calendar_IndexModel
-
 @{
-    ViewData["Title"] = "Calendar_Index";
+    ViewData["Title"] = "Settings_Index";
 }
 
-<h2>Calendar_Index</h2>
+<
 
+@section Styles {
+    <link href="/content/Settings/Settings.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title text-primary"><i class="fas fa-user"></i>  Administrative Page</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+               
+                
+                <!-- Content -->
+               
+                
+                
+                
+
+                <div class="container dayRow">
+                    
+                    @{
+                        var today = DateTime.Now;
+                        var thisSunday = today.AddDays(-(int) today.DayOfWeek + 1);
+
+                        <div class="row">
+                            <div class="col">
+                                Medarbejdere
+                            </div>
+
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                <div class="col">
+                                    <p class="daysFontSize">  @Html.DisplayName(thisSunday.AddDays(i).DayOfWeek.ToString())</p>
+                                    <p>@Html.DisplayName(thisSunday.AddDays(i).Date.ToString("d"))</p>
+
+                                </div>
+                            }
+                        </div>
+                        
+                        foreach (var user in Model.allUsers)
+                        {
+                            <div class="row no-gutters row-height">
+
+                                
+                                    <div class="col border-right displayFlex-EmployeeName">
+                                        <p class="position-employeeName">  @Html.DisplayName(user.Name)</p>  
+                                    </div>
+                                
+                                
+
+                                @for (int j = 0; j < 7; j++)
+                                {
+
+                                    var boo = true;
+
+                                    foreach (var VARIABLE in Model.UserShiftDetaileds)
+                                    {
+
+                                        if (VARIABLE.ShiftStart.Date.Equals(thisSunday.AddDays(j).Date) && VARIABLE.Id.Equals(user.Id))
+                                        {
+                                            
+                                            <div class="col col-style-reserved" style="margin: 2px;">
+                     
+                                                <span>@Html.DisplayName(String.Format(" StartTime  : "  +  VARIABLE.ShiftStart.ToString("T")))</span>
+                                                <span>@Html.DisplayName(String.Format(" Endtime  :  "  + VARIABLE.ShiftEnd.ToString("T")))</span>
+                                            </div>
+
+                                            boo = false;
+                                        }
+                                    }
+
+                                    if (boo)
+                                    {
+                                        <div class="col col-style-free" style="margin: 2px;">
+                                            <span class="Border border-primary"></span>
+                                        
+                                        </div>
+                                    }
+                                           
+                                  
+                                       
+                                    
+                                }
+                                    
+
+                            </div>
+                        }
+                    }
+
+
+
+                    <!-- End content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
