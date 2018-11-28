@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.WorkSchedule;
 
-namespace Platibus.Web.Pages.Help
+namespace Platibus.Web.Pages.Employee
 {
-    public class Employee_IndexModel : PageModel
+    public class MyShiftsModel : PageModel
     {
         private readonly IUserDataService _userDataService;
         private readonly IWorkScheduleDataService _workScheduleDataService;
@@ -17,7 +17,7 @@ namespace Platibus.Web.Pages.Help
         [BindProperty]
         public List<UserShiftDetailed> UserShiftDetaileds { get; set; }
 
-        public Employee_IndexModel(IUserDataService userDataService, IWorkScheduleDataService workScheduleDataService)
+        public MyShiftsModel(IUserDataService userDataService, IWorkScheduleDataService workScheduleDataService)
         {
             _userDataService = userDataService;
             _workScheduleDataService = workScheduleDataService;

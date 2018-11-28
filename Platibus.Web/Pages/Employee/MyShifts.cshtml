@@ -1,6 +1,6 @@
 ﻿@page
 @using Platibus.Web.Helpers
-@model Platibus.Web.Pages.Employee.Employee_IndexModel
+@model Platibus.Web.Pages.Employee.MyShiftsModel
 @{
     ViewData["Title"] = "Employee_Index";
 }
@@ -66,7 +66,7 @@
 
 
                                     <div class="col border-right displayFlex-EmployeeName">
-                                        <p class="position-employeeName"> @Html.DisplayName(user.Name)</p>
+                                        <p class="position-employeeName"> @Html.DisplayName(user.name)</p>
                                     </div>
                                     }
                                     {
