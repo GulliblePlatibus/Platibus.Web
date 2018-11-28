@@ -31,7 +31,6 @@ namespace Platibus.Web.Controllers
                 if (user.Id.Equals(userid))
                 {
                     return RedirectToPage("/home");
-
                 }
             }
             else

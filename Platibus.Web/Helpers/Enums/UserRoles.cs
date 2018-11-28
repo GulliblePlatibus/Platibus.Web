@@ -3,8 +3,9 @@ namespace Platibus.Web.Helpers
     public enum UserRoles
     {
         Admin,
-        Employee,
+        Administrative,
         Manager,
+        Employee,
         Unknown
     }
 }

@@ -64,19 +64,19 @@ namespace Platibus.Web.Pages.User_Pages
 
             switch (user.AccessLevel)
             {
-                case 0:
+                case UserRoles.Unknown:
                     idString = "Role undefined";
                     break;
-                case 1:
+                case UserRoles.Employee:
                     idString = "Employee";
                     break;
-                case 2:
+                case UserRoles.Manager:
                     idString = "Manager";
                     break;
-                case 3:
+                case UserRoles.Administrative:
                     idString = "Administrative Manager";
                     break;
-                case 4:
+                case UserRoles.Admin:
                     idString = "Admin / Root";
                     break;
             }

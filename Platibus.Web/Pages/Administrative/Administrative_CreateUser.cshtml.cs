@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices;
 using Platibus.Web.DataServices.Models.User;
@@ -59,7 +60,7 @@ namespace Platibus.Web.Pages.Administrative
 
             var authNiveau = ResolveAuthNiveau(authLvl);
 
-            if (authNiveau == 4)
+            if (authNiveau.Equals(UserRoles.Unknown))
             {
                 UserCreationError = false;
                 UserCreationErrorMsg = "The chosen role is not valid --> Valid roles are Admin, Employee, Manager";
@@ -88,24 +89,24 @@ namespace Platibus.Web.Pages.Administrative
 
         }
 
-        private int ResolveAuthNiveau(string role)
+        private UserRoles ResolveAuthNiveau(string role)
         {
             if (role.Equals("Administrative"))
             {
-                return 0;
+                return UserRoles.Administrative;
             }
 
             if (role.Equals("Manager"))
             {
-                return 1;
+                return UserRoles.Manager;
             }
 
             if (role.Equals("Employee"))
             {
-                return 2;
+                return UserRoles.Employee;
             }
 
-            return 4;
+            return UserRoles.Unknown;
         }
     }
 }
