@@ -24,4 +24,9 @@
   <ItemGroup>
     <Folder Include="Pages\Shared\Shared" />
   </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\LoginLogout\LoginLogout_Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Clipboard\Clipboard_Index.cshtml" />
+  </ItemGroup>
 </Project>
