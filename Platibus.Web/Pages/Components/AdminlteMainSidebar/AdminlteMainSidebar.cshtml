@@ -1,3 +1,4 @@
+@using Platibus.Web.Helpers
 @model Platibus.Web.DataServices.Models.User.User
 
 
@@ -19,11 +20,11 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             
-            @if (true) 
+            @if (Model.AccessLevel.Equals(UserRoles.Administrative))  
             {
                 
-                <!-- ADMIN MENU -->
-                <li class="header">ADMIN</li>
+                <!-- ADMINiSTRATIVE MENU -->
+                <li class="header">Administrative</li>
 
 
                 <li class="Dashboard">
@@ -31,45 +32,160 @@
                         <i class="fa fa-user"> </i> <span>Administrative</span>
                     </a>
                 </li>
-            } else if (true)
+                
+                
+                <!-- Manager MENU -->
+                <li class="header">My Overview</li>
+
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Calendar/Calendar_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
+                    </a>
+                </li>
+
+
+                
+                
+               
+                <li class="header">Analytics</li>
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Analytics/Analytics_Index">
+                        <i class="fa fa-pie-chart"></i> <span>Analytics</span>
+                    </a>
+                </li>
+                
+                <li class="header">Settings</li>
+                
+                <li class="Dashboard">
+                    <a asp-page="/Settings/Settings_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Personal Settings</span>
+                    </a>
+                </li>
+
+
+                
+                
+            } else if (Model.AccessLevel.Equals(UserRoles.Manager))
             {
                 
                 <!-- Manager MENU -->
                 <li class="header">My Overview</li>
 
 
-                <li class="Dashboard">
-                    <a asp-page="/Booking/Booking_Index">
-                        <i class="fa fa-chalkboard-teacher"></i> <span>My Shifts</span>
-                    </a>
-                </li>
-
-
+                
                 <li class="Dashboard">
                     <a asp-page="/Calendar/Calendar_Index">
-                        <i class="fa fa-calendar-alt"></i> <span>Booking Calendar</span>
+                        <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
                     </a>
                 </li>
-
 
                 <li class="Dashboard">
-                    <a asp-page="/Settings/Settings_Index">
-                        <i class="fa fa-calendar-alt"></i> <span>Settings</span>
+                    <a asp-page="/Booking/Booking_index">
+                        <i class="fa fa-calendar-alt"></i> <span>Shifts</span>
                     </a>
                 </li>
 
 
-            } else if (true)
+                <li class="header">Settings</li>
+                
+                <li class="Dashboard">
+                    <a asp-page="/Settings/Settings_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Personal Settings</span>
+                    </a>
+                </li>
+
+
+            } else if (Model.AccessLevel.Equals(UserRoles.Employee))
             {
                 <!-- EMPLOYEE MENU -->
                 
-                <li class="header">My Overview (Employee)</li>
+                <li class="header">My Overview</li>
                 
                 <li class="Dashboard">
-                    <a asp-page="/Administrative/Administrative_Index">
+                    <a asp-page="#">
                         <i class="fa fa-user"> </i> <span>My Shifts</span>
                     </a>
                 </li>
+                
+                
+                <li class="Dashboard">
+                    <a asp-page="/#">
+                        <i class="fa fa-user"> </i> <span>Overview</span>
+                    </a>
+                </li>
+                
+                
+                <li class="header">Settings</li>
+                
+                <li class="Dashboard">
+                    <a asp-page="/Settings/Settings_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Personal Settings</span>
+                    </a>
+                </li>
+                
+            }
+            else
+            {
+                
+                
+                <!-- ADMINiSTRATIVE MENU -->
+                <li class="header">Administrative</li>
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Administrative/Administrative_Index">
+                        <i class="fa fa-user"> </i> <span>Administrative</span>
+                    </a>
+                </li>
+                
+                
+                 
+                <li class="header">Analytics</li>
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Analytics/Analytics_Index">
+                        <i class="fa fa-pie-chart"></i> <span>Analytics</span>
+                    </a>
+                </li>
+                
+                
+                <li class="header">My Overview</li>
+                
+                <li class="Dashboard">
+                    <a asp-page="#">
+                        <i class="fa fa-user"> </i> <span>My Shifts</span>
+                    </a>
+                </li>
+                
+                
+                <li class="Dashboard">
+                    <a asp-page="#">
+                        <i class="fa fa-user"> </i> <span>Overview</span>
+                    </a>
+                </li>
+                
+                
+                <li class="Dashboard">
+                    <a asp-page="/Calendar/Calendar_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
+                    </a>
+                </li>
+                
+                
+                
+                <li class="header">Settings</li>
+                
+                <li class="Dashboard">
+                    <a asp-page="/Settings/Settings_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Personal Settings</span>
+                    </a>
+                </li>
+                
                 
             }
             
@@ -77,14 +193,7 @@
             
 
 
-            <li class="header">Analytics</li>
-
-
-            <li class="Dashboard">
-                <a asp-page="/Analytics/Analytics_Index">
-                    <i class="fa fa-pie-chart"></i> <span>Analytics</span>
-                </a>
-            </li>
+          
 
 
             @{
