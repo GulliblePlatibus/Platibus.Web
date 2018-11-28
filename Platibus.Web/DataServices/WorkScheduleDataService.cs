@@ -23,5 +23,17 @@ namespace Platibus.Web.DataServices
             
             return a;
         }
+
+        public async Task<IEnumerable<UserShiftDetailed>> GetUserShiftDetailed()
+        {
+            var baseurl = _serverUrl + "/api/workschedule/UserShiftDetailed";
+
+            var result = await GetAsync(baseurl);
+
+            var a = await TryReadAsync<IEnumerable<UserShiftDetailed>>(result);
+
+            return a;
+
+        }
     }
 }

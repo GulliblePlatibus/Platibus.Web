@@ -1,0 +1,30 @@
+.NAvne
+{
+    max-width: 10em;
+}
+
+.row-height {
+    height: 5em;
+}
+
+.col-style-free {
+    margin: 10px;
+    background-color:	#98FB98 ;
+}
+
+.col-style-reserved {
+    margin: 10px;
+    background-color: #fb5a55;
+}
+
+.position-employeeName {
+    padding: 10px;
+    word-break: break-all;
+}
+
+.displayFlex-EmployeeName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 10em;
+}

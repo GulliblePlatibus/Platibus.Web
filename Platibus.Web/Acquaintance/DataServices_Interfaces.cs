@@ -50,5 +50,6 @@ namespace Platibus.Web.Acquaintance.IDataServices
     public interface IWorkScheduleDataService
     {
         Task<IEnumerable<AllShiftsWithEmployees>> GetAllWorkSchedules();
+        Task<IEnumerable<UserShiftDetailed>> GetUserShiftDetailed();
     }
 }
