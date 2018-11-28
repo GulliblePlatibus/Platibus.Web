@@ -48,8 +48,8 @@
                             @for (int i = 0; i < 7; i++)
                             {
                                 <div class="col">
-                                    @Html.DisplayName(thisSunday.AddDays(i).DayOfWeek.ToString())
-                                    <p>@Html.DisplayName(thisSunday.AddDays(i).Date.ToString())</p>
+                                    <p class="daysFontSize">  @Html.DisplayName(thisSunday.AddDays(i).DayOfWeek.ToString())</p>
+                                    <p>@Html.DisplayName(thisSunday.AddDays(i).Date.ToString("d"))</p>
 
                                 </div>
                             }
@@ -78,8 +78,9 @@
                                         {
                                             
                                             <div class="col col-style-reserved" style="margin: 2px;">
-                                                <span class="Border border-primary">@Html.Display(VARIABLE.name)</span>
-           
+                     
+                                                <span>@Html.DisplayName(String.Format(" StartTime  :{0} " , VARIABLE.ShiftStart.ToString("T")))</span>
+                                                <span>@Html.DisplayName(String.Format(" Endtime  :{0} " , VARIABLE.ShiftEnd.ToString("T")))</span>
                                             </div>
 
                                             boo = false;
@@ -89,7 +90,7 @@
                                     if (boo)
                                     {
                                         <div class="col col-style-free" style="margin: 2px;">
-                                            <span class="Border border-primary">test</span>
+                                            <span class="Border border-primary"></span>
                                         
                                         </div>
                                     }

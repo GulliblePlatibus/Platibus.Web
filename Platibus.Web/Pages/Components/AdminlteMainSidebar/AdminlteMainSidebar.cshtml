@@ -19,8 +19,10 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             
-            @if (Model.AccessLevel == 0) 
+            @if (true) 
             {
+                
+                <!-- ADMIN MENU -->
                 <li class="header">ADMIN</li>
 
 
@@ -29,31 +31,50 @@
                         <i class="fa fa-user"> </i> <span>Administrative</span>
                     </a>
                 </li>
+            } else if (true)
+            {
+                
+                <!-- Manager MENU -->
+                <li class="header">My Overview</li>
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Booking/Booking_Index">
+                        <i class="fa fa-chalkboard-teacher"></i> <span>My Shifts</span>
+                    </a>
+                </li>
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Calendar/Calendar_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Booking Calendar</span>
+                    </a>
+                </li>
+
+
+                <li class="Dashboard">
+                    <a asp-page="/Settings/Settings_Index">
+                        <i class="fa fa-calendar-alt"></i> <span>Settings</span>
+                    </a>
+                </li>
+
+
+            } else if (true)
+            {
+                <!-- EMPLOYEE MENU -->
+                
+                <li class="header">My Overview (Employee)</li>
+                
+                <li class="Dashboard">
+                    <a asp-page="/Administrative/Administrative_Index">
+                        <i class="fa fa-user"> </i> <span>My Shifts</span>
+                    </a>
+                </li>
+                
             }
-            <li class="header">Booking</li>
-
-
-            <li class="Dashboard">
-                <a asp-page="/Booking/Booking_Index">
-                    <i class="fa fa-chalkboard-teacher"></i> <span>Shifts</span>
-                </a>
-            </li>
-
-
-            <li class="Dashboard">
-                <a asp-page="/Calendar/Calendar_Index">
-                    <i class="fa fa-calendar-alt"></i> <span>Booking Calendar</span>
-                </a>
-            </li>
-
-
-            <li class="Dashboard">
-                <a asp-page="/Settings/Settings_Index">
-                    <i class="fa fa-calendar-alt"></i> <span>Settings</span>
-                </a>
-            </li>
-
-
+            
+            
+            
 
 
             <li class="header">Analytics</li>
