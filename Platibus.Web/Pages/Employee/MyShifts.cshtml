@@ -34,45 +34,42 @@
                
                 
                 
-                
-
+               
                 <div class="container dayRow">
                     
                     @{
                         var today = DateTime.Now;
                         var thisSunday = today.AddDays(-(int) today.DayOfWeek + 1);
-                        var employee = HttpContext.SubjectId();
+                        
 
                         <div class="row">
                             <div class="col">
-
+                                Medarbejdere
                             </div>
 
                             @for (int i = 0; i < 7; i++)
                             {
                                 <div class="col">
-                                    @Html.DisplayName(thisSunday.AddDays(i).DayOfWeek.ToString())
-                                    <p>@Html.DisplayName(thisSunday.AddDays(i).Date.ToString())</p>
+                                    <p class="daysFontSize">  @Html.DisplayName(thisSunday.AddDays(i).DayOfWeek.ToString())</p>
+                                    <p>@Html.DisplayName(thisSunday.AddDays(i).Date.ToString("d"))</p>
 
                                 </div>
                             }
                         </div>
-
-                        foreach (var user in Model.UserShiftDetaileds)
+                        
+                        foreach (var user in @Model.UserShiftDetaileds)
                         {
-                            if (employee.Equals(user.Id))
-                            {
+
+                            
+                                 <div class="container">
                                 <div class="row no-gutters row-height">
 
-
+                                
                                     <div class="col border-right displayFlex-EmployeeName">
-                                        <p class="position-employeeName"> @Html.DisplayName(user.name)</p>
+                                        <p class="position-employeeName">  @Html.DisplayName(user.name)</p>  
                                     </div>
-                                    }
-                                    {
-                                    }
-
-
+                                
+                                
 
                                     @for (int j = 0; j < 7; j++)
                                     {
@@ -84,29 +81,56 @@
 
                                             if (VARIABLE.ShiftStart.Date.Equals(thisSunday.AddDays(j).Date) && VARIABLE.Id.Equals(user.Id))
                                             {
+                                            
+                                                <div class="col col-style-free border-radius-3px" style="margin: 2px;">
+                     
+                                                  
+                                                        <p>@Html.DisplayName(String.Format(VARIABLE.ShiftStart.ToString("T") + "-" + VARIABLE.ShiftEnd.ToString("T")))</p>
+                                                    
+                                                    </div>
 
-                                                <div class="col col-style-reserved" style="margin: 2px;">
-                                                    <span class="Border border-primary">@Html.Display(VARIABLE.name)</span>
-
-                                                </div>
 
                                                 boo = false;
+                                                
                                             }
+                                           
                                         }
 
                                         if (boo)
                                         {
-                                            <div class="col col-style-free" style="margin: 2px;">
-                                                <span class="Border border-primary">test</span>
-
+                                            
+                                    
+                                            <div class="col col-style-reserved center-content border-radius-3px " style="margin: 2px;">
+                                               
+                                                <span class="Border border-primary"></span>
+                                             
                                             </div>
+                                            
                                         }
+                                           
+                                  
+                                       
+                                    
                                     }
-                                </div>
-                            }
-                        }
-                    }
+                                    
 
+                                </div>
+                            </div>
+                        
+                            }
+                           
+                    
+
+
+                        
+
+                    <!-- End content -->
+                
+                    
+                        
+
+                }
+                
 
                     <!-- End content -->
                 </div>

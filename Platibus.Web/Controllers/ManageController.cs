@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.Helpers;
@@ -14,6 +15,7 @@ namespace Platibus.Web.Controllers
     public class ManageController : Controller
     {
         private readonly IUserDataService _userDataService;
+        
 
         public ManageController(IUserDataService userDataService)
         {
@@ -47,15 +49,13 @@ namespace Platibus.Web.Controllers
             
             HttpClient a = new HttpClient();
 
-            // await a.GetAsync("https://localhost:5001/account/logout");
+            await a.GetAsync("https://localhost:5001/account/logout");
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
-            
-            
-            
+            HttpContext.Response.Cookies.Delete("idsrv");
             return Redirect("/");
         }
     } 

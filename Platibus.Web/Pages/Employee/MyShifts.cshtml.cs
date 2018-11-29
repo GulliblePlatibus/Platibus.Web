@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.WorkSchedule;
+using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Pages.Employee
 {
@@ -25,7 +26,23 @@ namespace Platibus.Web.Pages.Employee
         
         public async Task OnGetAsync()
         {
-            UserShiftDetaileds = await _workScheduleDataService.GetUserShiftDetailed() as List<UserShiftDetailed>;
+            var temp = await _workScheduleDataService.GetUserShiftDetailed() as List<UserShiftDetailed>;
+            UserShiftDetaileds = getLoggedInShifts(temp);
+        }
+
+
+        public List<UserShiftDetailed> getLoggedInShifts(List<UserShiftDetailed> userShiftDetaileds)
+        {
+            List<UserShiftDetailed> list = new List<UserShiftDetailed>();
+            foreach (var VARIABLE in userShiftDetaileds)
+            {
+                if (VARIABLE.Id.Equals(HttpContext.SubjectId()))
+                {
+                    list.Add(VARIABLE);
+                }
+            }
+
+            return list;
         }
     }
 }

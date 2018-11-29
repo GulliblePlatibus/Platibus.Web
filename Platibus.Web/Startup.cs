@@ -88,6 +88,8 @@ namespace Platibus.Web
                 .AddOpenIdConnect("oidc", x =>
                 {
                     x.SignInScheme = "Cookies";
+                    x.SignOutScheme = "Cookies";
+                    
                     x.Authority = "https://localhost:5001/";
                     x.RequireHttpsMetadata = false;
                     x.ClientId = "mvc";
