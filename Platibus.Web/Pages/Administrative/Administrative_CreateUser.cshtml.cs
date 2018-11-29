@@ -10,7 +10,7 @@ using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Pages.Administrative
 {
-    [Authorize(Roles = nameof(UserRoles.Admin))]
+    [Authorize(Policy = nameof(UserRoles.Administrative))]
     public class Administrative_CreateUserModel : PageModel
     {
         /*This pagemodel is responsible for taking the input of its corresponding @page,

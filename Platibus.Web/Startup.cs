@@ -87,6 +87,17 @@ namespace Platibus.Web
                         }
                     };
                 });
+            services.AddAuthorization(x =>
+            {
+                x.AddPolicy(UserRoles.Admin.ToString(), policy =>
+                    policy.RequireClaim(ClaimTypes.Role, UserRoles.Admin.ToString()));
+                x.AddPolicy(UserRoles.Administrative.ToString(), policy =>
+                    policy.RequireClaim(ClaimTypes.Role, UserRoles.Admin.ToString(), UserRoles.Administrative.ToString()));
+                x.AddPolicy(UserRoles.Manager.ToString(), policy =>
+                    policy.RequireClaim(ClaimTypes.Role, UserRoles.Manager.ToString()));
+                x.AddPolicy(UserRoles.Employee.ToString(), policy =>
+                    policy.RequireClaim(ClaimTypes.Role, UserRoles.Employee.ToString()));
+            });
             
             
             var container = new Container(new WebRegistry());
