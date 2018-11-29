@@ -26,49 +26,29 @@
                 <!-- ADMINiSTRATIVE MENU -->
                 <li class="header">Administrative</li>
 
-
                 <li class="Dashboard">
                     <a asp-page="/Administrative/Administrative_Index">
                         <i class="fa fa-user"> </i> <span>Administrative</span>
                     </a>
                 </li>
                 
-                
                 <!-- Manager MENU -->
                 <li class="header">My Overview</li>
-
-
 
                 <li class="Dashboard">
                     <a asp-page="/Calendar/Calendar_Index">
                         <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
                     </a>
                 </li>
-
-
-                
-                
                
                 <li class="header">Analytics</li>
-
 
                 <li class="Dashboard">
                     <a asp-page="/Analytics/Analytics_Index">
                         <i class="fa fa-pie-chart"></i> <span>Analytics</span>
                     </a>
                 </li>
-                
-                <li class="header">Settings</li>
-                
-                <li class="Dashboard">
-                    <a asp-page="/Settings/Settings_Index">
-                        <i class="fa fa-calendar-alt"></i> <span>Personal Settings</span>
-                    </a>
-                </li>
 
-
-                
-                
             } else if (Model.AccessLevel.Equals(UserRoles.Manager))
             {
                 
@@ -88,16 +68,6 @@
                         <i class="fa fa-calendar-alt"></i> <span>Shifts</span>
                     </a>
                 </li>
-
-
-                <li class="header">Settings</li>
-                
-                <li class="Dashboard">
-                    <a asp-page="/Settings/Settings_Index">
-                        <i class="fa fa-calendar-alt"></i> <span>Personal Settings</span>
-                    </a>
-                </li>
-
 
             } else if (Model.AccessLevel.Equals(UserRoles.Employee))
             {
