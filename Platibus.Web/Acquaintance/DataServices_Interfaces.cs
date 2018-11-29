@@ -6,6 +6,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Platibus.Web.DataServices.Models.Salary;
+using Platibus.Web.DataServices.Models.Salary.Entities;
 using Platibus.Web.DataServices.Models.Shift;
 using Platibus.Web.DataServices.Models.WorkSchedule;
 
@@ -25,12 +27,12 @@ namespace Platibus.Web.Acquaintance.IDataServices
 
         Task<Response> UpdateUserById(Guid id, User user);
         Task<Response> DeleteUserById(Guid id);
+        Task<List<ShiftPayment>> GetSalaryForUserPagedAsync(Guid userId, DateTime fromDate, DateTime toDate);
     }
 
 
     public interface IShift
     {
-        
          DateTime ShiftStart { get; set; }
          DateTime ShiftEnd { get; set; }
     }

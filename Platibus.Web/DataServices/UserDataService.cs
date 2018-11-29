@@ -9,6 +9,8 @@ using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Documents;
 using Platibus.Web.Acquaintance.IDataServices;
 using System.Collections.Generic;
+using Platibus.Web.DataServices.Models.Salary;
+using Platibus.Web.DataServices.Models.Salary.Entities;
 
 namespace Platibus.Web.DataServices
 {
@@ -74,6 +76,15 @@ namespace Platibus.Web.DataServices
                 return Response.Unsuccesfull(response.ReasonPhrase);
             }
             return Response.Succes();
+        }
+
+        public async Task<List<ShiftPayment>> GetSalaryForUserPagedAsync(Guid userId, DateTime fromDate, DateTime toDate)
+        {
+            var baseurl = _serverUrl + $"/api/users/{userId}/salary?fromDate={fromDate}&toDate={toDate}";
+
+            var result = await GetAsync(baseurl);
+
+            return await TryReadAsync<List<ShiftPayment>>(result);
         }
 
         public async Task<User> GetUserById(Guid id)

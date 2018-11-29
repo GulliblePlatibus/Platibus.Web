@@ -23,7 +23,7 @@ namespace Platibus.Web.Pages.Employee
             _workScheduleDataService = workScheduleDataService;
         }
         
-    public async Task OnGetAsync()
+        public async Task OnGetAsync()
         {
             UserShiftDetaileds = await _workScheduleDataService.GetUserShiftDetailed() as List<UserShiftDetailed>;
         }

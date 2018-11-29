@@ -1,6 +1,112 @@
 @page
 @using Platibus.Web.Helpers
+@using System.Web.Helpers;
 @model Platibus.Web.Pages.Employee.OverviewModel
 
-<div> Min seje side</div>
+<html>
+<head>
+    <title>Bar Chart</title>
+    <script src="/adminlte/components/chart.js/Chart.js"></script>
+    
+</head>
 
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title text-primary"><i class="fas fa-user"></i>  Work Hours     :      @Model.FromDate.ToString("d") - @Model.ToDate.ToString("d")</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+               
+                
+                <!-- Content -->
+                <div></div>
+                <div style="width: 100%">
+                    <canvas id="canvas" height="450" width="600"></canvas>
+                </div>
+                <!-- End content -->
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col-lg-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title text-primary"><i class="fas fa-user"></i>  Pay :      @Model.FromDate.ToString("d") - @Model.ToDate.ToString("d")</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <!-- Content -->
+                <h3 class="box-title text-primary"><i></i>  Hours: </h3>
+                @foreach (var supplement in Model.PieDataSet)
+                {
+                    <div class="col border-right displayFlex-EmployeeName">
+                        <p class="position-employeeName">@Html.DisplayName(supplement.Value.ToString()) hours of @Html.DisplayName(supplement.Label) @Html.DisplayName(supplement.Supplement.ToString()) --> Total: @Html.DisplayName(supplement.TotalPayment.ToString())</p>
+                    </div>
+                }
+                
+                <div class="canvas-holder half">
+                    <canvas id="chart-area" width="400" height="400"></canvas>
+                </div>
+                <!-- End content -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    
+    var dataLabels = @Html.Raw(Json.Serialize(Model.BarLabels));
+    var dataValues = @Html.Raw(Json.Serialize(Model.BarValues));
+
+    var barChartData = {
+        labels : dataLabels,
+        datasets : [
+            {
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data : dataValues
+            }
+        ]
+    }
+    
+    
+    
+    var doughnutData = @Html.Raw(Json.Serialize(Model.PieDataSet));
+    
+    window.onload = function(){
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx).Bar(barChartData,
+            {
+                responsive : true
+            });
+        
+        var donutCtx = document.getElementById("chart-area").getContext("2d");
+        window.myDoughnut = new Chart(donutCtx).Doughnut(doughnutData,
+            {
+                responsive : true
+            });
+    }
+</script>
