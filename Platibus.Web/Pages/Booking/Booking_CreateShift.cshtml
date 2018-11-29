@@ -1,6 +1,5 @@
-﻿@page
-@using Newtonsoft.Json.Serialization
-@model Platibus.Web.Pages.Booking.Booking_CreateShift
+﻿@page "{handler?}"
+@model Platibus.Web.Pages.Booking.Booking_CreateShiftModel
 
 @{ 
     ViewData["Title"] = "User Index";
@@ -42,10 +41,6 @@
                             <div class="form-group">
                                 <label asp-for="shift.ShiftEnd" class="control-label"></label>
                                 <input asp-for="shift.ShiftEnd" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label  class="control-label">Add a employee to the shift</label> <br></br>
-                                @Html.DropDownListFor(model => model.user.Id, Model.UserList, "Empty Shift")
                             </div>
             
                             <div class="form-group">

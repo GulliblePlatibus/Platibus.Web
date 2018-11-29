@@ -19,11 +19,11 @@ namespace Platibus.Web.DataServices
             
         }
 
-        public async Task<Response> CreateShift(Shift shift)
+        public async Task<Response> CreateShift(CreateShiftModel shift)
         {
             var baseUrl = _serverUrl + "/api/shifts";
 
-            var response = await PostAsync<Shift>(baseUrl, shift);
+            var response = await PostAsync<CreateShiftModel>(baseUrl, shift);
             
             if (!response.IsSuccessStatusCode)
             {
@@ -37,7 +37,26 @@ namespace Platibus.Web.DataServices
 
             return Response.Succes();
         }
-        
+
+        public async Task<Response> UpdateShift(UpdateShiftModel shift)
+        {
+            var baseUrl = _serverUrl + "/api/shifts/Update";
+
+            var response = await PutAsync<UpdateShiftModel>(baseUrl, shift);
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.Content != null)
+                {
+                    var errorMsg = await response.Content.ReadAsStringAsync();
+                    return Response.Unsuccesfull(errorMsg);
+                }
+                return Response.Unsuccesfull(response.ReasonPhrase);
+            }
+
+            return Response.Succes();
+        }
+
         public async Task<Response> CreateManyShifts(ListOfShifts shifts)
         {
             var baseUrl = _serverUrl + "/api/shifts/AddManyShifts";  
@@ -113,5 +132,7 @@ namespace Platibus.Web.DataServices
             return Response.Succes();
             
         }
+        
+       
     }
 }

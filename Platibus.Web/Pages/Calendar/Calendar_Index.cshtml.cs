@@ -14,6 +14,7 @@ using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.Shift;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.DataServices.Models.WorkSchedule;
+using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Pages.Calendar
 {
@@ -38,13 +39,16 @@ namespace Platibus.Web.Pages.Calendar
         {
             _userDataService = userDataService;
             _workScheduleDataService = workScheduleDataService;
+            UserShiftDetaileds = new List<UserShiftDetailed>();
         }
         
         public async Task OnGetAsync()
         {
             allUsers = await _userDataService.ListUsersAsync(2, 2) as List<User>;
             AllShifts = await _workScheduleDataService.GetAllWorkSchedules() as List<AllShiftsWithEmployees>;
-            UserShiftDetaileds = await _workScheduleDataService.GetUserShiftDetailed() as List<UserShiftDetailed>;
+            UserShiftDetaileds= await _workScheduleDataService.GetUserShiftDetailed() as List<UserShiftDetailed>;
+
+            
 
             
         }

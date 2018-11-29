@@ -40,7 +40,8 @@ namespace Platibus.Web.Acquaintance.IDataServices
 
     public interface IShiftDataService
     {
-        Task<Response> CreateShift(Shift shift);
+        Task<Response> CreateShift(CreateShiftModel shift);
+        Task<Response> UpdateShift(UpdateShiftModel shift);
         Task<IEnumerable<Shift>> ListUsersAsync();
         Task<Response> CreateManyShifts(ListOfShifts shifts);
         Task<Response> AddEmployeeToShift(AssignUserToShift assignUserToShift);

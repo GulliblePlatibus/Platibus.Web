@@ -22,6 +22,7 @@ using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.DataServices.Models.Shift;
 using Platibus.Web.Middleware;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Platibus.Web
 {
@@ -55,6 +56,18 @@ namespace Platibus.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Management.API Auth", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "application",
+                    Description = "This API uses the Management.API login Oauth2 Client Credentials flow",
+                    TokenUrl = "https://qa-auth-management-identity.azurewebsite.net/connect/token",
+                    Scopes = new Dictionary<string, string> { { "scope.fullacces", "Acces to all api-endpoints" } }
+                });
+                c.SwaggerDoc("v1", new Info { Title = "Management Backend", Version = "v1", Description = "Management API for use with prior agreement" });
+            });
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -111,6 +124,15 @@ namespace Platibus.Web
         {
             app.UseCustomAuthLookupMiddleware();
             
+            //Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            //Enabled API to deliver swagger UI on http://{serverUrl}/swagger;
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+            });
+
             
             if (env.IsDevelopment())
             {

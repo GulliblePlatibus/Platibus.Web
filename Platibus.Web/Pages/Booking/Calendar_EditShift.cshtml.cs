@@ -14,7 +14,7 @@ using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Pages.Booking
 {
-    public class Booking_EditShiftModel : PageModel
+    public class Calendar_EditShiftModel : PageModel
     {
         private readonly IShiftDataService _shiftDataService;
         private readonly IUserDataService _userDataService;
@@ -30,7 +30,7 @@ namespace Platibus.Web.Pages.Booking
 
         private List<User> Employees;
         
-        public Booking_EditShiftModel(IShiftDataService shiftDataService , IUserDataService userDataService)
+        public Calendar_EditShiftModel(IShiftDataService shiftDataService , IUserDataService userDataService)
         {
             _shiftDataService = shiftDataService;
             _userDataService = userDataService;
@@ -51,7 +51,7 @@ namespace Platibus.Web.Pages.Booking
             // get shift
             shift = await _shiftDataService.GetShiftById(id);
             var users = await _userDataService.ListUsersAsync(2, 2);
-            
+
             
             foreach (var VARIABLE in users)
             {
@@ -60,7 +60,6 @@ namespace Platibus.Web.Pages.Booking
                     Employees.Add(VARIABLE);
                 }
             }
-            
             
             UserList = Employees.Select(x => new SelectListItem()
             {
@@ -72,6 +71,7 @@ namespace Platibus.Web.Pages.Booking
 
         public async Task<IActionResult> OnPostUpdateShiftWithUserAsync(User user , Shift shift)
         {
+            
             if (shift.ShiftStart == null)
             {
                 return null; // More check and redirect to error page
@@ -87,14 +87,15 @@ namespace Platibus.Web.Pages.Booking
             };
 
             var result = await _shiftDataService.UpdateShift(shiftWithEmployee);
-            return RedirectToPage("/Booking/Booking_index");
+            
+            return RedirectToPage("/Calendar/Calendar_Index");
         }
-        
+
         public async Task<IActionResult> OnPostDeleteShiftAsync(Shift shift)
         {
             var result = await _shiftDataService.DeleteShiftById(shift.id);
             
-            return RedirectToPage("/Booking/Booking_Index");
+            return RedirectToPage("/Calendar/Calendar_Index");
         }
     }
 }

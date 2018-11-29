@@ -12,7 +12,7 @@ using Platibus.Web.DataServices.Models.User;
 
 namespace Platibus.Web.Pages.Booking
 {
-    public class Booking_CreateShift : PageModel
+    public class Booking_CreateShiftModel : PageModel
     {
         private readonly IShiftDataService _shiftDataService;
         private readonly IUserDataService _userDataService;
@@ -29,17 +29,17 @@ namespace Platibus.Web.Pages.Booking
         [BindProperty]
         public int numberOfShifts { get; set; }
 
-        public Booking_CreateShift(IShiftDataService shiftDataService , IUserDataService userDataService)
+        public Booking_CreateShiftModel(IShiftDataService shiftDataService , IUserDataService userDataService)
         {
             _shiftDataService = shiftDataService;
             _userDataService = userDataService;
         }
         
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(DateTime dateTime)
         {
-           
-            
+
+            Console.WriteLine();
             
             var users = await _userDataService.ListUsersAsync(2, 2);
             UserList = users.Select(x => new SelectListItem()
@@ -70,6 +70,13 @@ namespace Platibus.Web.Pages.Booking
            
             
             return RedirectToPage("/Booking/Booking_index");
+        }
+
+        
+        public async Task OnGetTestAsync(string date)
+        {
+            
+
         }
 
 
