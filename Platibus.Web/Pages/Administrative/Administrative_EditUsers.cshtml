@@ -39,6 +39,12 @@
                             @Html.DisplayNameFor(model => model._userList[0].Email)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model._userList[0].Wage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model._userList[0].EmploymentDate)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model._userList[0].AccessLevel)
                         </th>
                         <th>
@@ -58,13 +64,19 @@
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Wage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmploymentDate)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.AccessLevel)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Id)
                             </td>
                             <td>
-                                <a asp-page="./Administrative_EditSingleUser" asp-route-id="@item.Id"/>
+                                <a asp-page="./Administrative_EditSingleUser" asp-route-id="@item.Id" />
                                 <i class="glyphicon glyphicon-edit" title="Edit user data"></i>
                             </td>
                             <td>

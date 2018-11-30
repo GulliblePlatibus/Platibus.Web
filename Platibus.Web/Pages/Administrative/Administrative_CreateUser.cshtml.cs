@@ -39,17 +39,22 @@ namespace Platibus.Web.Pages.Administrative
          * The strings parameters 'user_realName, user_...' is similarly
          * named the same as the inputs in the @page, enabling the binding
          */
-        public async Task OnPostCreateUserAsync(string user_realName, string user_email, string user_password, string authLvl)
+        public async Task OnPostCreateUserAsync(string user_realName, string user_email, string user_password, double user_wage, DateTime user_employmentDate, string authLvl)
         {
             UserCreationError = true;
             UserCreationErrorMsg = "";
-            if (string.IsNullOrEmpty(user_realName) || string.IsNullOrEmpty(user_email) || string.IsNullOrEmpty(user_password))
+            if (string.IsNullOrEmpty(user_realName) || string.IsNullOrEmpty(user_email) || string.IsNullOrEmpty(user_password) || double.IsNaN(user_wage))
             {
                 //Show error messages in view
                 UserCreationError = false;
-                UserCreationErrorMsg = "Name, email and password may not be empty... Please try again";
+                UserCreationErrorMsg = "Name, email, password, wage and employment start can not be empty... Please try again";
                 return;
             }
+            if (DateTime.Equals(DateTime.MinValue,DateTime.MinValue))
+            {
+                user_employmentDate = DateTime.Today;
+            }
+           
 
             if (string.IsNullOrEmpty(authLvl))
             {
@@ -72,6 +77,8 @@ namespace Platibus.Web.Pages.Administrative
                 Email = user_email,
                 Name = user_realName,
                 Password = user_password,
+                Wage = user_wage,
+                EmploymentDate = user_employmentDate,
                 AccessLevel = authNiveau
             });
 
@@ -85,7 +92,7 @@ namespace Platibus.Web.Pages.Administrative
             //Show success messages in view
             UserCreationSuccesfull = false;
             UserCreationSuccesMSg =
-                "Succesfully created user with email: " + user_email + " and password " + user_password;
+                "Succesfully created user with email: " + user_email + " and password " + user_password + " and wage " + user_wage + " and employment start at " + user_employmentDate + response;
 
         }
 

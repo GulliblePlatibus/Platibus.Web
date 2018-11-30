@@ -29,6 +29,14 @@
                 <input type="password" asp-for="user.Password" class="form-control"/>
             </div>
             <div class="form-group">
+                <label asp-for="user.EmploymentDate" class="control-label">New employment date</label>
+                <input type="date" asp-for="user.EmploymentDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Wage" class="control-label">New wage</label>
+                <input type="number" asp-for="user.Wage" class="form-control" />
+            </div>
+            <div class="form-group">
                 <input type="submit" asp-page-handler="UpdateUser" value="Update User" />
             </div>
         </form>
