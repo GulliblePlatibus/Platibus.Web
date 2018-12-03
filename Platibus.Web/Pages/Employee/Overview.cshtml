@@ -56,13 +56,15 @@
             <div class="box-body">
                 <!-- Content -->
                 <h3 class="box-title text-primary"><i></i>  Hours: </h3>
-                @foreach (var supplement in Model.PieDataSet)
+                @if (Model.PieDataSet != null)
                 {
-                    <div class="col border-right displayFlex-EmployeeName">
-                        <p class="position-employeeName">@Html.DisplayName(supplement.Value.ToString()) hours of @Html.DisplayName(supplement.Label) @Html.DisplayName(supplement.Supplement.ToString()) --> Total: @Html.DisplayName(supplement.TotalPayment.ToString())</p>
-                    </div>
+                    foreach (var supplement in Model.PieDataSet)
+                    {
+                         <div class="col border-right displayFlex-EmployeeName">
+                             <p class="position-employeeName">@Html.DisplayName(supplement.Value.ToString()) hours of @Html.DisplayName(supplement.Label) @Html.DisplayName(supplement.Supplement.ToString()) --> Total: @Html.DisplayName(supplement.TotalPayment.ToString())</p>
+                         </div>
+                     }
                 }
-                
                 <div class="canvas-holder half">
                     <canvas id="chart-area" width="400" height="400"></canvas>
                 </div>

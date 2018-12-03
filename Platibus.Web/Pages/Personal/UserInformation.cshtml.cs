@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
 using Platibus.Web.Acquaintance.IDataServices;
 using Platibus.Web.Controllers;
+using Platibus.Web.DataServices.Models.Salary;
 using Platibus.Web.DataServices.Models.User;
 using Platibus.Web.Helpers;
 
@@ -38,10 +39,6 @@ namespace Platibus.Web.Pages.User_Pages
         [Authorize]
         public async Task<IActionResult> OnGetAsync()
         {
-            //Change so it is the currently logged in User!!!
-            //var id = "387eb00f-7420-45e9-abd9-a5229554115f";
-            
-
             var ui = HttpContext;
 
             var token = await HttpContext.GetTokenAsync("access_token");
@@ -51,9 +48,7 @@ namespace Platibus.Web.Pages.User_Pages
             var id = HttpContext.SubjectId();
             try
             {
-               // user = await _userDataService.GetUserById(Guid.Parse(id));
                 user = await _userDataService.GetUserById(id);
-                
             }
             catch (HttpRequestException ex)
             {

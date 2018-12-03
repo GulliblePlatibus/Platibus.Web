@@ -54,8 +54,13 @@ namespace Platibus.Web.Pages.Employee
                 ToDate);
             
             //Sort data labels
-            SortBarDataSet(result, FromDate, ToDate);
-            SortPieDataSet(result);
+            if (result != null)
+            {
+                SortBarDataSet(result, FromDate, ToDate);
+                SortPieDataSet(result);
+            }
+
+            
             
             WorkHourList = result;
             PayList = result;

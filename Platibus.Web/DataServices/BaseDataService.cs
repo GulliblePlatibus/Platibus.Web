@@ -173,7 +173,7 @@ namespace Platibus.Web.DataServices
 
         protected async Task<T> TryReadAsync<T>(HttpResponseMessage response) where T : class
         {
-            if (response.Content == null)
+            if (response.Content == null || !response.IsSuccessStatusCode)
             {
                 return null; // <-- Dont eat the error here!
             }
