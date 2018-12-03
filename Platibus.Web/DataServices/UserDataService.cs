@@ -80,7 +80,7 @@ namespace Platibus.Web.DataServices
 
         public async Task<List<ShiftPayment>> GetSalaryForUserPagedAsync(Guid userId, DateTime fromDate, DateTime toDate)
         {
-            var baseurl = _serverUrl + $"/api/users/{userId}/salary?fromDate={fromDate}&toDate={toDate}";
+            var baseurl = _serverUrl + $"/api/users/{userId}/salary?fromDate={fromDate.Ticks}&toDate={toDate.Ticks}";
 
             var result = await GetAsync(baseurl);
 
