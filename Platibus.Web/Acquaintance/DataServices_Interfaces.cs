@@ -28,6 +28,7 @@ namespace Platibus.Web.Acquaintance.IDataServices
         Task<Response> UpdateUserById(Guid id, User user);
         Task<Response> DeleteUserById(Guid id);
         Task<List<ShiftPayment>> GetSalaryForUserPagedAsync(Guid userId, DateTime fromDate, DateTime toDate);
+        Task<List<ShiftPayment>> GetSalaryByIdAsync(Guid id);
     }
 
 
