@@ -77,7 +77,7 @@ namespace Platibus.Web.Pages.Administrative
                 Email = user_email,
                 Name = user_realName,
                 Password = user_password,
-                Wage = user_wage,
+                BaseWage = user_wage,
                 EmploymentDate = user_employmentDate,
                 AccessLevel = authNiveau
             });
