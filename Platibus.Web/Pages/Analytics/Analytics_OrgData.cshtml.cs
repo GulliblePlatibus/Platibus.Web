@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Platibus.Web.Pages.Analytics
 {
-    public class Analytics_SingleUserInfoModel : PageModel
+    public class Analytics_OrgDataModel : PageModel
     {
         public void OnGet()
         {

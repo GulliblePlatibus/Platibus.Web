@@ -87,13 +87,13 @@ namespace Platibus.Web.DataServices
             return await TryReadAsync<List<ShiftPayment>>(result);
         }
 
-       /* public async Task<ShiftPayment> GetSalaryByIdAsync(Guid id)
+        /*public async Task<double> GetTotalSalary(List<Guid> list, DateTime fromDate, DateTime toDate)
         {
-            var baseurl = _serverUrl + "/api/users/salary/" + id;
+            var baseurl = _serverUrl + $"/api/users/{list}/salary?fromDate={fromDate.Ticks}&toDate={toDate.Ticks}";
 
             var result = await GetAsync(baseurl);
 
-            return await TryReadAsync<ShiftPayment>(result); 
+            return await TryReadAsync<double>(result); 
         }*/
 
         public async Task<User> GetUserById(Guid id)

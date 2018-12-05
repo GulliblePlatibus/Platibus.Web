@@ -55,8 +55,6 @@ namespace Platibus.Web.Pages.User_Pages
                 return new RedirectToPageResult("Error");
             }
 
-           // idString = user.Id.ToString();
-
             switch (user.AccessLevel)
             {
                 case UserRoles.Unknown:

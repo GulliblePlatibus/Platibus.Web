@@ -1,11 +1,9 @@
 ﻿@page
-@model Platibus.Web.Pages.Analytics.Analytics_GenInfoModel
-@using System.Web.Helpers;
-@using Platibus.Web.Acquaintance.IDataServices
-
+@model Platibus.Web.Pages.Analytics.Analytics_ProjectedModel
 @{
-    ViewData["Title"] = "Analytics_GenInfo";
+    ViewData["Title"] = "Analytics_Projected";
 }
+
 <head>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -29,12 +27,12 @@
             @for (int i = 0; i < Model.UserNameAndSalariesListYear.Count; i++)
             {
                 <text>
-                    data.addRow(['@Model.UserNameAndSalariesListYear[i].name', @Model.UserNameAndSalariesListYear[i].salary]); 
+                    data.addRow(['@Model.UserNameAndSalariesListYear[i].name', @Model.UserNameAndSalariesListYear[i].salary]);
                 </text>
             }
 
             // Set chart options
-            var options = {'title':'Employee total Salaries for the preceding 12 months',
+            var options = {'title':'Employee total Salaries including any projected pay',
                 'is3D':true,
                 'height':1000};
 
@@ -42,22 +40,22 @@
             var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
             chart.draw(data, options);
 
-            var piechart_options = {title:'Total salary in the preceding year, divided by in percentage of paid salary per employee in the organization, in the preceding year',
+            var piechart_options = {title:'Total salaries, including future projected pay, divided by in percentage of paid salary per employee in the organization',
                 height:1000};
             var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
-            piechart.draw(data, piechart_options); 
+            piechart.draw(data, piechart_options);
         }
     </script>
 </head>
 
 <body>
-<h2>Paid Salaries in the Preceding year</h2>
-<div id="chart_div"></div>
-<br/>
-<p>[Note: Hover the mouse on the bars, to see additional information about the paid salaries]</p>
-<hr/>
-<div id="piechart_div"></div>
-<br/>
-<p>[Note: Hover the mouse on the bars, to see additional information about the paid salaries, such as the amount (in thousands dkk)]</p>
-<hr/>
+    <h2>Paid Salaries in the livespan of the organization, including any projected future salaries</h2>
+    <div id="chart_div"></div>
+    <br />
+    <p>[Note: Hover the mouse on the bars, to see additional information about the paid salaries]</p>
+    <hr />
+    <div id="piechart_div"></div>
+    <br />
+    <p>[Note: Hover the mouse on the bars, to see additional information about the paid salaries, such as the amount (in thousands dkk)]</p>
+    <hr />
 </body>

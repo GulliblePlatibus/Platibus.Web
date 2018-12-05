@@ -10,7 +10,7 @@ using Platibus.Web.DataServices.Models.User;
 
 namespace Platibus.Web.Pages.Analytics
 {
-    public class Analytics_GenInfoModel : PageModel
+    public class Analytics_ProjectedModel : PageModel
     {
         private IUserDataService _userDataService;
         private IWorkScheduleDataService _workScheduleDataService;
@@ -18,10 +18,10 @@ namespace Platibus.Web.Pages.Analytics
         [BindProperty] public List<User> _userList { get; set; }
         [BindProperty] public List<UserNameAndSalary> UserNameAndSalariesListYear { get; set; }
         private int startInViewList { get; set; }
-        
-        
 
-        public Analytics_GenInfoModel(IUserDataService userDataService, IWorkScheduleDataService workScheduleDataService)
+
+
+        public Analytics_ProjectedModel(IUserDataService userDataService, IWorkScheduleDataService workScheduleDataService)
         {
             _userDataService = userDataService;
             _userList = new List<User>();
@@ -30,13 +30,13 @@ namespace Platibus.Web.Pages.Analytics
             _userList = Users.ToList();
             UserNameAndSalariesListYear = populateYearList();
         }
-        
+
         public async Task OnGetAsync()
         {
-            
+
         }
 
-        
+
 
         private List<UserNameAndSalary> populateYearList()
         {
@@ -44,49 +44,48 @@ namespace Platibus.Web.Pages.Analytics
             foreach (var user in _userList)
             {
                 yearList.Add(populateSalariesList(
-                    _userDataService.GetSalaryForUserPagedAsync(user.Id, DateTime.Now.AddYears(-1), DateTime.Now)
+                    _userDataService.GetSalaryForUserPagedAsync(user.Id, DateTime.Now.AddYears(-20), DateTime.Now.AddYears(10))
                         .Result, user.Name));
             }
-            
+
             if (!yearList.Any())
             {
                 return populateDefaultSalariesList();
             }
 
-            return yearList; 
+            return yearList;
         }
 
         private UserNameAndSalary populateSalariesList(List<ShiftPayment> shiftPayments, string name)
         {
             if (!shiftPayments.Any()) return new UserNameAndSalary(name, 0);
-            
+
             return new UserNameAndSalary(name, GetAccumulatedSalary(shiftPayments));
         }
 
         private List<UserNameAndSalary> populateDefaultSalariesList()
         {
-            var emptyList = new List<UserNameAndSalary>(); 
+            var emptyList = new List<UserNameAndSalary>();
             for (int i = 0; i < 10; i++)
             {
                 emptyList.Add(new UserNameAndSalary("", 0));
             }
 
-            return emptyList; 
+            return emptyList;
         }
-        
+
         private double GetAccumulatedSalary(List<ShiftPayment> shiftPayments)
         {
             double totalSalary = 0;
             foreach (var shift in shiftPayments)
             {
-                totalSalary += shift.TotalPayment; 
+                totalSalary += shift.TotalPayment;
             }
 
             return Math.Truncate(totalSalary / 1000);
         }
 
-        
-        
-        
+
+
     }
 }
