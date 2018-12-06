@@ -50,7 +50,7 @@ namespace Platibus.Web.Pages.Administrative
                 UserCreationErrorMsg = "Name, email, password, wage and employment start can not be empty... Please try again";
                 return;
             }
-            if (DateTime.Equals(DateTime.MinValue,DateTime.MinValue))
+            if (user_employmentDate.Equals(DateTime.MinValue))
             {
                 user_employmentDate = DateTime.Today;
             }
