@@ -64,6 +64,7 @@ namespace Platibus.Web.Helpers
             return context;
         }
 
+        
         public static Guid SubjectId(this HttpContext httpContext)
         {
             const string SUB = "sub";
@@ -85,6 +86,5 @@ namespace Platibus.Web.Helpers
             }
             return subjectId;
         }
-        
     }
 }
