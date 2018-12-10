@@ -71,7 +71,7 @@ namespace Platibus.Web.Pages.Analytics
                 }
             }
 
-            var la = "";
+            var a = ""; 
         }
     }
 }
