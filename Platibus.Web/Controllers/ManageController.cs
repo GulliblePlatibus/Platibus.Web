@@ -2,10 +2,14 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Options;
+using Microsoft.Extensions.Options;
 using Platibus.Web.Acquaintance.IDataServices;
+using Platibus.Web.ConfigHelpers;
 using Platibus.Web.Helpers;
 
 namespace Platibus.Web.Controllers
@@ -15,11 +19,13 @@ namespace Platibus.Web.Controllers
     public class ManageController : Controller
     {
         private readonly IUserDataService _userDataService;
-        
+        private readonly IOptions<IdentityServerConfiguration> _identityConfig;
 
-        public ManageController(IUserDataService userDataService)
+
+        public ManageController(IUserDataService userDataService, IOptions<IdentityServerConfiguration> identityConfig)
         {
             _userDataService = userDataService;
+            _identityConfig = identityConfig;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -49,7 +55,7 @@ namespace Platibus.Web.Controllers
             
             HttpClient a = new HttpClient();
 
-            await a.GetAsync("https://localhost:5001/account/logout");
+            await a.GetAsync($"{_identityConfig.Value.IdentityServerUrl}/account/logout");
 
             //Console.WriteLine();
 

@@ -46,6 +46,9 @@ namespace Platibus.Web
         {
             services.Configure<BackendServerUrlConfiguration>(
                 _configuration.GetSection(nameof(BackendServerUrlConfiguration)));
+            services.Configure<IdentityServerConfiguration>(
+                _configuration.GetSection(nameof(IdentityServerConfiguration)));
+            
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
@@ -63,7 +66,7 @@ namespace Platibus.Web
                     Type = "oauth2",
                     Flow = "application",
                     Description = "This API uses the Management.API login Oauth2 Client Credentials flow",
-                    TokenUrl = "https://qa-auth-management-identity.azurewebsite.net/connect/token",
+                    TokenUrl = "https://qa-auth-management-identity.azurewebsite.net/connect/token", //This is only swagger configs
                     Scopes = new Dictionary<string, string> { { "scope.fullacces", "Acces to all api-endpoints" } }
                 });
                 c.SwaggerDoc("v1", new Info { Title = "Management Backend", Version = "v1", Description = "Management API for use with prior agreement" });
@@ -79,6 +82,9 @@ namespace Platibus.Web
             
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
+            var identityServerConfig = _configuration.GetSection(nameof(IdentityServerConfiguration))
+                .Get<IdentityServerConfiguration>();
+            
             services.AddAuthentication(x =>
                 {
                     x.DefaultScheme = "Cookies";
@@ -90,7 +96,7 @@ namespace Platibus.Web
                     x.SignInScheme = "Cookies";
                     x.SignOutScheme = "Cookies";
                     
-                    x.Authority = "https://localhost:5001/";
+                    x.Authority = $"{identityServerConfig.IdentityServerUrl}/";
                     x.RequireHttpsMetadata = false;
                     x.ClientId = "mvc";
                     x.SaveTokens = true;

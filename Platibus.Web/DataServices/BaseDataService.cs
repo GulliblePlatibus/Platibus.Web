@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -168,7 +169,20 @@ namespace Platibus.Web.DataServices
                 client = new HttpClient();
             }
 
-            return await client.GetAsync(baseurl);
+            HttpResponseMessage result = null;
+            try
+            {
+                result = await client.GetAsync(baseurl);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
+                Console.WriteLine(ex.StackTrace);
+                result = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }
+
+            return result;
         }
 
         protected async Task<T> TryReadAsync<T>(HttpResponseMessage response) where T : class

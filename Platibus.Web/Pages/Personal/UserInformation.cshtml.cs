@@ -76,9 +76,5 @@ namespace Platibus.Web.Pages.User_Pages
             
             return Page();
         }
-
-        
-
-
     }
 }
