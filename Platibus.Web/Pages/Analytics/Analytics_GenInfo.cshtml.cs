@@ -82,7 +82,7 @@ namespace Platibus.Web.Pages.Analytics
                 totalSalary += shift.TotalPayment; 
             }
 
-            return Math.Truncate(totalSalary / 1000);
+            return Math.Truncate(totalSalary);
         }
 
         
