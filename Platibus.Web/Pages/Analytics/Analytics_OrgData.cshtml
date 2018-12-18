@@ -15,10 +15,11 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Year', 'Salary Expences'],
-                ['2004',  1000],
-                ['2005',  1170],
-                ['2006',  660],
-                ['2007',  1030]
+                ['@Model._yearAndTotals[0]._time.ToString()',  @Model._yearAndTotals[0]._total],
+                ['@Model._yearAndTotals[1]._time.ToString()',  @Model._yearAndTotals[1]._total],
+                ['@Model._yearAndTotals[2]._time.ToString()',  @Model._yearAndTotals[2]._total],
+                ['@Model._yearAndTotals[3]._time.ToString()',  @Model._yearAndTotals[3]._total],
+                ['@Model._yearAndTotals[4]._time.ToString()',  @Model._yearAndTotals[4]._total]
             ]);
 
             var options = {
@@ -34,5 +35,5 @@
     </script>
 </head>
 <body>
-<div id="curve_chart" style="width: 900px; height: 500px"></div>
+<div id="curve_chart" style="height: 800px"></div>
 </body>

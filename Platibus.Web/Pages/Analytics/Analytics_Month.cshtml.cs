@@ -29,6 +29,7 @@ namespace Platibus.Web.Pages.Analytics
             Users = _userDataService.ListUsersAsync(0, 10).Result;
             _userList = Users.ToList();
             UserNameAndSalariesListYear = populateYearList();
+            var la = ""; 
         }
 
         public async Task OnGetAsync()
@@ -82,7 +83,7 @@ namespace Platibus.Web.Pages.Analytics
                 totalSalary += shift.TotalPayment;
             }
 
-            return Math.Truncate(totalSalary / 1000);
+            return Math.Truncate(totalSalary) ;
         }
 
 
