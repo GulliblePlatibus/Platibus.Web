@@ -82,6 +82,7 @@ namespace Platibus.Web
             
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
+            /*
             var identityServerConfig = _configuration.GetSection(nameof(IdentityServerConfiguration))
                 .Get<IdentityServerConfiguration>();
             
@@ -119,7 +120,7 @@ namespace Platibus.Web
                 x.AddPolicy(UserRoles.Employee.ToString(), policy =>
                     policy.RequireClaim(ClaimTypes.Role, UserRoles.Employee.ToString()));
             });
-            
+            */
             
             var container = new Container(new WebRegistry());
             container.Configure(config => config.Populate(services));
@@ -152,7 +153,7 @@ namespace Platibus.Web
                 app.UseHsts();
             }
 
-            app.UseAuthentication();
+           // app.UseAuthentication();
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();

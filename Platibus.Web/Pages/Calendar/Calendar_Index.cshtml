@@ -55,6 +55,9 @@
                                 </div>
                             }
                         </div>
+                        @if (Model.allUsers != null)
+                        {
+                            
                         
                         foreach (var user in @Model.allUsers)
                         {
@@ -76,6 +79,10 @@
 
                                         var boo = true;
 
+                                        @if (Model.UserShiftDetaileds != null)
+                                        {
+                                            
+                                       
                                         foreach (var VARIABLE in Model.UserShiftDetaileds)
                                         {
 
@@ -112,12 +119,15 @@
                                        
                                     
                                     }
+                                    }
                                     
 
                                 </div>
                             </div>
                         }
                             }
+                        }
+                        
                            
                     
 
@@ -143,6 +153,10 @@
                             @for (int i = 0; i < 7; i++)
                             {
                                 var totalEmployees = 0;
+                                if (Model.UserShiftDetaileds != null)
+                                {
+                                    
+                               
                                 foreach (var VARIABLE in @Model.UserShiftDetaileds)
                                 {
                                     if (VARIABLE.ShiftStart.Date.Equals(thisSunday.AddDays(i).Date))
@@ -156,6 +170,8 @@
                                     </div>
                                 </div>
                             }
+                            }
+                            
                         </div>
                         
                         <div class="row no-gutters row-height" >
@@ -170,6 +186,10 @@
                             {
                                 
                                 var totalHours = new TimeSpan();
+                                if (Model.UserShiftDetaileds != null)
+                                {
+                                    
+                                
                                 foreach (var VARIABLE in @Model.UserShiftDetaileds)
                                 {
                                     if (VARIABLE.ShiftStart.Date.Equals(thisSunday.AddDays(i).Date))
@@ -189,6 +209,8 @@
                                     </div>
                                 </div>
                             }
+                            }
+                            
                         </div>
                     </div>
                 }

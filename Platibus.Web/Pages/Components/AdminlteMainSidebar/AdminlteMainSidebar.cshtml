@@ -12,7 +12,7 @@
                 <img src="~/content/images/profile.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>@Html.DisplayName(Model.Name)</p>
+                <p>Name</p>
                 
             </div>
         </div>
@@ -20,76 +20,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             
-            @if (Model.AccessLevel.Equals(UserRoles.Administrative))  
-            {
-                
-                <!-- ADMINiSTRATIVE MENU -->
-                <li class="header">Administrative</li>
-
-                <li class="Dashboard">
-                    <a asp-page="/Administrative/Administrative_Index">
-                        <i class="fa fa-user"> </i> <span>Administrative</span>
-                    </a>
-                </li>
-                
-                <!-- Manager MENU -->
-                <li class="header">My Overview</li>
-
-                <li class="Dashboard">
-                    <a asp-page="/Calendar/Calendar_Index">
-                        <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
-                    </a>
-                </li>
-               
-                <li class="header">Analytics</li>
-
-                <li class="Dashboard">
-                    <a asp-page="/Analytics/Analytics_Index">
-                        <i class="fa fa-pie-chart"></i> <span>Analytics</span>
-                    </a>
-                </li>
-
-            } else if (Model.AccessLevel.Equals(UserRoles.Manager))
-            {
-                
-                <!-- Manager MENU -->
-                <li class="header">My Overview</li>
-
-
-                
-                <li class="Dashboard">
-                    <a asp-page="/Calendar/Calendar_Index">
-                        <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
-                    </a>
-                </li>
-
-                <li class="Dashboard">
-                    <a asp-page="/Booking/Booking_index">
-                        <i class="fa fa-calendar-alt"></i> <span>Shifts</span>
-                    </a>
-                </li>
-
-            } else if (Model.AccessLevel.Equals(UserRoles.Employee))
-            {
-                <!-- EMPLOYEE MENU -->
-                
-                <li class="header">My Overview</li>
-                
-                <li class="Dashboard">
-                    <a asp-page="/Employee/MyShifts">
-                        <i class="fa fa-user"> </i> <span>My Shifts</span>
-                    </a>
-                </li>
-                
-                
-                <li class="Dashboard">
-                    <a asp-page="/Employee/Overview">
-                        <i class="fa fa-user"> </i> <span>Overview</span>
-                    </a>
-                </li>
-            }
-            else
-            {
+           
                 
                 
                 <!-- ADMINiSTRATIVE MENU -->
@@ -135,7 +66,7 @@
                         <i class="fa fa-calendar-alt"></i> <span>Workschedule</span>
                     </a>
                 </li>
-            }
+            
             
             
             
