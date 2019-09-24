@@ -76,12 +76,6 @@
                     
                             <td class="display-flex">
                         
-                                <a asp-page="./Booking_EditShift" asp-route-id="@shift.Id" >
-                                    <i class="fa fa-edit fa-2x padding-5"></i>
-                                </a>
-                                <form method="post">
-                                    <button  asp-page-handler="DeleteShift" type="submit" name="ShiftId" value="@shift.Id" class="fa fa-trash fa-2x padding-5"></button>
-                                </form>
                             </td>
                         </tr>
                     }
@@ -109,22 +103,7 @@
                     </button>
                 </div>
             </div>
-            <div class="box-body">
-
-    
-              
-                    <div class="center">
-                        <div class="form-group">
-            
-                            <a asp-page="./Booking_CreateShift">
-                                <i class="fas fa-plus fa-5x"></i>
-                                <p style="margin-left: -40px;">Click to add a new shift</p>
-                            </a>
-                        </div>
-        
-                    </div>
-                
-            </div>
+          
 
         </div>
     </div>
