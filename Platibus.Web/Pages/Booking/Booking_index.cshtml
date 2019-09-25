@@ -75,7 +75,13 @@
                             </td>
                     
                             <td class="display-flex">
-                         
+                                       <a asp-page="./Booking_EditShift" asp-route-id="@shift.Id" >
+                                                             <i class="fa fa-edit fa-2x padding-5"></i>
+                                                         </a>
+                                <form method="post">
+                                    <button  asp-page-handler="DeleteShift" type="submit" name="ShiftId" value="@shift.Id" class="fa fa-trash fa-2x padding-5"></button>
+                                </form>
+                                
                             </td>
                         </tr>
                     }
